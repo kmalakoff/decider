@@ -1,10 +1,10 @@
 version: "2"
 services:
   admin:
-    image: decider/admin:development
+    image: decider/admin:dist
     build:
       context: ./admin
-      dockerfile: Dockerfile.development
+      dockerfile: Dockerfile.dist
     volumes:
         - ./admin:/home/nodejs/app
     ports:

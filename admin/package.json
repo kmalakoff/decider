@@ -1,12 +1,12 @@
 {
-  "name": "mobx-async-await-boilerplate",
+  "name": "decider-admin",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start-development": "npm install && cross-env NODE_ENV=development nodemon --harmony-async-await --watch server server/index.js",
     "start": "cross-env NODE_ENV=production node --harmony-async-await server/index.js",
-    "compile": "cross-env NODE_ENV=production webpack --display-modules",
+    "compile": "npm install && cross-env NODE_ENV=production webpack --display-modules",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "license": "MIT",

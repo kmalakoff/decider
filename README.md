@@ -9,11 +9,16 @@ Open web app
 eval "$(docker-machine env)"
 open http://$(docker-machine ip):3000
 
-By hand
+By hand - Development
 ===========================================================
-docker build -t decider/admin:admin -f admin/Dockerfile.development admin/
-docker run -v $PWD/admin:/app -t decider/admin:admin npm install
-docker run -it -p 3000:3000 -v $PWD/admin:/app decider/admin:admin
+docker build -t decider/admin:development -f admin/Dockerfile.development admin/
+docker run -p 3000:3000 -v $PWD/admin:/home/nodejs/app -it decider/admin:development
+
+By hand - Development
+===========================================================
+docker build -t decider/admin:development -f admin/Dockerfile.development admin/
+docker run -p 3000:3000 -it decider/admin:production bash
+docker run -p 3000:3000 -it decider/admin:production
 
 Add bash
 ===========================================================

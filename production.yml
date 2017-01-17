@@ -1,0 +1,9 @@
+version: "2"
+services:
+  admin:
+    image: decider/admin:production
+    build:
+      context: ./admin
+      dockerfile: Dockerfile.production
+    ports:
+      - 3000:3000

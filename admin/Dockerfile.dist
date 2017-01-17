@@ -7,12 +7,8 @@ USER nodejs
 
 RUN mkdir -p /home/nodejs/app
 WORKDIR /home/nodejs/app
-
-COPY package.json /home/nodejs/app/package.json
-RUN npm install --production
-COPY ./server /home/nodejs/app/server
-COPY ./test /home/nodejs/app/test
+# mounted and installed when run
 
 EXPOSE 3000
 
-CMD ["npm", "run", "test"]
+CMD ["npm", "run", "compile"]
