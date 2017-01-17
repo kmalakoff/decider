@@ -1,6 +1,6 @@
 version: "2"
 services:
-  admin-web:
+  admin_web:
     image: decider/admin-web:development
     build:
       context: ./admin-web
@@ -10,11 +10,9 @@ services:
     ports:
       - "3000:3000"
     links:
-      - admin-api
-    environment:
-      - ADMIN_API_URL=http://admin-api:3001
+      - admin_api:ADMIN_API_URL # environment variable: ADMIN_API_URL
 
-  admin-api:
+  admin_api:
     image: decider/admin-api:development
     build:
       context: ./admin-api
