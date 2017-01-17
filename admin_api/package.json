@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start-debug": "npm install && cross-env NODE_ENV=development node --harmony-async-await --debug=0.0.0.0:5858 server/index.js",
     "start-development": "npm install && cross-env NODE_ENV=development nodemon -L --harmony-async-await --watch server server/index.js",
     "start": "cross-env NODE_ENV=production node --harmony-async-await server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"

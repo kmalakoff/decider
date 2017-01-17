@@ -1,0 +1,29 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Docker Debug (Admin Web)",
+      "type": "node",
+      "request": "attach",
+      "port": 5858,
+      "address": "192.168.64.16",
+      "restart": false,
+      "sourceMaps": false,
+      "outDir": null,
+      "localRoot": "${workspaceRoot}/admin_web/",      // Path within host (i.e. "/Users/../server"),
+      "remoteRoot": "/home/nodejs/app/"                // Path withing Docker container
+    },
+    {
+      "name": "Docker Debug (Admin API)",
+      "type": "node",
+      "request": "attach",
+      "port": 5859,
+      "address": "192.168.64.16",
+      "restart": false,
+      "sourceMaps": false,
+      "outDir": null,
+      "localRoot": "${workspaceRoot}/admin_api/",      // Path within host (i.e. "/Users/../server"),
+      "remoteRoot": "/home/nodejs/app/"                // Path withing Docker container
+    }
+  ]
+}

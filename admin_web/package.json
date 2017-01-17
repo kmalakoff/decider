@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start-debug": "npm install && cross-env NODE_ENV=development node --harmony-async-await --debug=0.0.0.0:5858 server/index.js",
     "start-development": "npm install && cross-env NODE_ENV=development nodemon -L --harmony-async-await --watch server server/index.js",
     "start": "cross-env NODE_ENV=production node --harmony-async-await server/index.js",
     "compile": "npm install && cross-env NODE_ENV=production webpack --display-modules",
@@ -19,8 +20,6 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-1": "^6.5.0",
     "css-loader": "^0.26.0",
-    "eslint": "^3.10.2",
-    "eslint-plugin-react": "^6.7.1",
     "file-loader": "^0.9.0",
     "mobx": "^2.6.3",
     "mobx-react": "^3.5.9",
