@@ -2,8 +2,8 @@ const path = require('path');
 const webpack = require('webpack');
 
 const APP_PATH = path.resolve(__dirname, 'client');
-const NODE_ENV = process.env.NODE_ENV || 'development';
-const ADMIN_API_URL = process.env.ADMIN_API_URL || 'http://192.168.64.16:3001';
+const NODE_ENV = process.env.NODE_ENV;
+const ADMIN_API_URL = process.env.ADMIN_API_URL;
 
 module.exports = {
   entry: path.join(APP_PATH, 'index.' + NODE_ENV + '.jsx'),

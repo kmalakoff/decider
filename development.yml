@@ -10,7 +10,10 @@ services:
     ports:
       - "3000:3000"
     links:
-      - admin_api:ADMIN_API_URL # environment variable: ADMIN_API_URL
+      - admin_api
+    environment:
+      - NODE_ENV=development
+      - ADMIN_API_URL=http://192.168.64.16:3001 # TODO: remove hard coding
 
   admin_api:
     image: decider/admin-api:development
@@ -21,3 +24,5 @@ services:
         - ./admin-api:/home/nodejs/app
     ports:
       - "3001:3000"
+    environment:
+      - NODE_ENV=development
