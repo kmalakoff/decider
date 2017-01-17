@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start-debug": "npm install && cross-env NODE_ENV=development node --harmony-async-await --debug=0.0.0.0:5858 server/index.js",
-    "start-development": "npm install && cross-env NODE_ENV=development nodemon -L --harmony-async-await --watch server server/index.js",
-    "start": "cross-env NODE_ENV=production node --harmony-async-await server/index.js",
-    "compile": "npm install && cross-env NODE_ENV=production webpack --display-modules",
+    "start-debug": "npm install && node --harmony-async-await --debug=0.0.0.0:5858 server/index.js",
+    "start-development": "npm install && nodemon -L --harmony-async-await --watch server server/index.js",
+    "start": "node --harmony-async-await server/index.js",
+    "compile": "npm install && webpack --display-modules",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "license": "MIT",
@@ -21,24 +21,23 @@
     "babel-preset-stage-1": "^6.5.0",
     "css-loader": "^0.26.0",
     "file-loader": "^0.9.0",
-    "mobx": "^2.6.3",
-    "mobx-react": "^3.5.9",
+    "mobx": "^3.0.1",
+    "mobx-react": "^4.1.0",
     "nodemon": "^1.11.0",
     "react": "^15.4.0",
     "react-create-provider": "^1.0.1",
     "react-dom": "^15.4.0",
     "react-hot-loader": "^3.0.0-beta.2",
     "semantic-ui-css": "^2.2.4",
-    "semantic-ui-react": "^0.61.1",
+    "semantic-ui-react": "^0.64.1",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
-    "cross-env": "^3.1.3",
+    "cors": "^2.8.1",
     "express": "^4.14.0",
-    "lodash": "^4.17.2",
-    "lodash.uniqueid": "^4.0.1"
+    "lodash": "^4.17.2"
   }
 }
