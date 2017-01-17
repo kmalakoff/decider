@@ -1,11 +1,25 @@
 version: "2"
 services:
-  admin:
-    image: decider/admin:development
+  admin-web:
+    image: decider/admin-web:development
     build:
-      context: ./admin
+      context: ./admin-web
       dockerfile: Dockerfile.development
     volumes:
-        - ./admin:/home/nodejs/app
+        - ./admin-web:/home/nodejs/app
     ports:
-      - 3000:3000
+      - "3000:3000"
+    links:
+      - admin-api
+    environment:
+      - ADMIN_API_URL=http://admin-api:3001
+
+  admin-api:
+    image: decider/admin-api:development
+    build:
+      context: ./admin-api
+      dockerfile: Dockerfile.development
+    volumes:
+        - ./admin-api:/home/nodejs/app
+    ports:
+      - "3001:3000"

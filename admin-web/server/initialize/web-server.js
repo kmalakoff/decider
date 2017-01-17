@@ -7,7 +7,5 @@ module.exports = async function(options) {
   app.use(require('body-parser').json());
   app.use('/', express.static(path.join(__dirname, '..', '..', 'public')));
 
-  require('../routes')(app);
-
   await app.listen(options.webPort);
 }

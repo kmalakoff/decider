@@ -17,7 +17,7 @@ module.exports = async function(options) {
       filename: 'bundle.js',
       publicPath: '/client/'
     },
-    plugins: (webpackConfig.plugins || []).concat([new webpack.HotModuleReplacementPlugin()]),
+    plugins: (webpackConfig.plugins || []).concat([new webpack.HotModuleReplacementPlugin()])
   });
 
   await new WebpackDevServer(webpack(config), {

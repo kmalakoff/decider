@@ -13,7 +13,7 @@ export default class Store {
 
   async fetch() {
     try {
-      let res = await fetch('/api/things');
+      let res = await fetch(`${process.env.ADMIN_API_URL}/api/things`);
       this.things = await res.json();
     } catch (err) { alert(err); }
   }
