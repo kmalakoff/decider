@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start-development": "npm install && cross-env NODE_ENV=development nodemon -L --harmony-async-await --watch server server/index.development.js",
-    "start": "cross-env NODE_ENV=production node --harmony-async-await server/index.production.js",
+    "start-development": "npm install && cross-env NODE_ENV=development nodemon -L --harmony-async-await --watch server server/index.js",
+    "start": "cross-env NODE_ENV=production node --harmony-async-await server/index.js",
     "compile": "npm install && cross-env NODE_ENV=production webpack --display-modules",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
