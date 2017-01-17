@@ -1,11 +1,14 @@
 version: "2"
 services:
-  admin:
-    image: decider/admin:dist
+  admin_web:
+    image: decider/admin_web:dist
     build:
-      context: ./admin
+      context: ./admin_web
       dockerfile: Dockerfile.dist
     volumes:
-        - ./admin:/home/nodejs/app
+        - ./admin_web:/home/nodejs/app
     ports:
       - 3000:3000
+    environment:
+      - NODE_ENV=production
+      - ADMIN_API_URL=http://192.168.64.16:3001 # TODO: remove hard coding

@@ -1,27 +1,25 @@
 version: "2"
 services:
   admin_web:
-    image: decider/admin-web:development
+    image: decider/admin_web:development
     build:
-      context: ./admin-web
+      context: ./admin_web
       dockerfile: Dockerfile.development
     volumes:
-        - ./admin-web:/home/nodejs/app
+        - ./admin_web:/home/nodejs/app
     ports:
       - "3000:3000"
-    links:
-      - admin_api
     environment:
       - NODE_ENV=development
       - ADMIN_API_URL=http://192.168.64.16:3001 # TODO: remove hard coding
 
   admin_api:
-    image: decider/admin-api:development
+    image: decider/admin_api:development
     build:
-      context: ./admin-api
+      context: ./admin_api
       dockerfile: Dockerfile.development
     volumes:
-        - ./admin-api:/home/nodejs/app
+        - ./admin_api:/home/nodejs/app
     ports:
       - "3001:3000"
     environment:
