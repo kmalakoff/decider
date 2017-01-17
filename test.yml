@@ -1,0 +1,10 @@
+version: "2"
+services:
+  admin:
+    build:
+      context: ./admin
+      dockerfile: Dockerfile.test
+    image: decider/admin-test:admin-test
+    ports:
+      - "3000:3000"
+      - "3001:3001"

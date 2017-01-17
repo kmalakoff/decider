@@ -1,0 +1,11 @@
+version: "2"
+services:
+  admin:
+    image: decider/admin:admin
+    build:
+      context: ./admin
+      dockerfile: Dockerfile.development
+    volumes:
+        - ./admin:/app
+    ports:
+      - 3000:3000
