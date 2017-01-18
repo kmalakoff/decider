@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Docker Debug (Admin Web)",
+      "name": "Docker Debug (Web)",
       "type": "node",
       "request": "attach",
       "port": 5858,
@@ -10,11 +10,11 @@
       "restart": false,
       "sourceMaps": false,
       "outDir": null,
-      "localRoot": "${workspaceRoot}/admin_web/",
+      "localRoot": "${workspaceRoot}/image_web/",
       "remoteRoot": "/home/nodejs/app/"
     },
     {
-      "name": "Docker Debug (Admin API)",
+      "name": "Docker Debug (Read API)",
       "type": "node",
       "request": "attach",
       "port": 5859,
@@ -22,7 +22,19 @@
       "restart": false,
       "sourceMaps": false,
       "outDir": null,
-      "localRoot": "${workspaceRoot}/admin_api/",
+      "localRoot": "${workspaceRoot}/image_read_api/",
+      "remoteRoot": "/home/nodejs/app/"
+    },
+    {
+      "name": "Docker Debug (Write API)",
+      "type": "node",
+      "request": "attach",
+      "port": 5860,
+      "address": "192.168.64.16",
+      "restart": false,
+      "sourceMaps": false,
+      "outDir": null,
+      "localRoot": "${workspaceRoot}/image_command_api/",
       "remoteRoot": "/home/nodejs/app/"
     }
   ]

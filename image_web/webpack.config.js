@@ -1,25 +1,18 @@
 const path = require('path');
 const webpack = require('webpack');
+const _ = require('lodash');
 
 const APP_PATH = path.resolve(__dirname, 'client');
-const NODE_ENV = process.env.NODE_ENV;
-const ADMIN_API_URL = process.env.ADMIN_API_URL;
+const CLIENT_ENV_VARS = require('./config/client_environment_variables');
 
 module.exports = {
-  entry: path.join(APP_PATH, 'index.' + NODE_ENV + '.jsx'),
+  entry: path.join(APP_PATH, 'index.' + process.env.NODE_ENV + '.jsx'),
   output: {
     path: path.join(__dirname, 'public', 'client'),
     filename: 'bundle.js'
   },
   resolve: {extensions: ['', '.js', '.jsx']},
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify(NODE_ENV),
-        'ADMIN_API_URL': JSON.stringify(ADMIN_API_URL)
-      }
-    })
-  ],
+  plugins: [new webpack.DefinePlugin({'process.env': _.pick(process.env, CLIENT_ENV_VARS)})],
   module: {
     loaders: [
       {test: /\.jsx?$/, loaders: ['babel'], include: APP_PATH},

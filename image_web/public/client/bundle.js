@@ -21472,7 +21472,7 @@
 
 	var ReactComponentTreeHook;
 
-	if (typeof process !== 'undefined' && ({"NODE_ENV":"production","ADMIN_API_URL":"http://192.168.64.16:3001"}) && ("production") === 'test') {
+	if (typeof process !== 'undefined' && ({"NODE_ENV":"production","READ_API_URL":"http://192.168.64.16:3001"}) && ("production") === 'test') {
 	  // Temporary hack.
 	  // Inline requires don't work well with Jest:
 	  // https://github.com/facebook/react/issues/7240
@@ -23609,7 +23609,7 @@
 
 	var ReactComponentTreeHook;
 
-	if (typeof process !== 'undefined' && ({"NODE_ENV":"production","ADMIN_API_URL":"http://192.168.64.16:3001"}) && ("production") === 'test') {
+	if (typeof process !== 'undefined' && ({"NODE_ENV":"production","READ_API_URL":"http://192.168.64.16:3001"}) && ("production") === 'test') {
 	  // Temporary hack.
 	  // Inline requires don't work well with Jest:
 	  // https://github.com/facebook/react/issues/7240
@@ -41225,7 +41225,7 @@
 
 	  // If debug isn't set in LS, and we're in Electron, try to load $DEBUG
 	  if (typeof process !== 'undefined' && 'env' in process) {
-	    return ({"NODE_ENV":"production","ADMIN_API_URL":"http://192.168.64.16:3001"}).DEBUG;
+	    return ({"NODE_ENV":"production","READ_API_URL":"http://192.168.64.16:3001"}).DEBUG;
 	  }
 	}
 
