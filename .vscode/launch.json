@@ -10,7 +10,7 @@
       "restart": false,
       "sourceMaps": false,
       "outDir": null,
-      "localRoot": "${workspaceRoot}/containers/admin_web/",
+      "localRoot": "${workspaceRoot}/admin_web/",
       "remoteRoot": "/home/nodejs/app/"
     },
     {
@@ -22,7 +22,7 @@
       "restart": false,
       "sourceMaps": false,
       "outDir": null,
-      "localRoot": "${workspaceRoot}/containers/admin_api/",
+      "localRoot": "${workspaceRoot}/admin_api/",
       "remoteRoot": "/home/nodejs/app/"
     }
   ]

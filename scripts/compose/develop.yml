@@ -3,10 +3,10 @@ services:
   admin_web:
     image: decider/admin_web:develop
     build:
-      context: ../../containers/admin_web
+      context: ../../admin_web
       dockerfile: Dockerfile.develop
     volumes:
-        - ../../containers/admin_web:/home/nodejs/app
+        - ../../admin_web:/home/nodejs/app
     ports:
       - "3000:3000"
       - "5858:5858"
@@ -16,10 +16,10 @@ services:
   admin_api:
     image: decider/admin_api:develop
     build:
-      context: ../../containers/admin_api
+      context: ../../admin_api
       dockerfile: Dockerfile.develop
     volumes:
-        - ../../containers/admin_api:/home/nodejs/app
+        - ../../admin_api:/home/nodejs/app
     ports:
       - "3001:3000"
       - "5859:5858"

@@ -3,10 +3,8 @@ services:
   admin_web:
     image: decider/admin_web:pack
     build:
-      context: ../../containers/admin_web
+      context: ../../admin_web
       dockerfile: Dockerfile.pack
-    volumes:
-        - ../../containers/admin_web:/home/nodejs/app
     ports:
       - "3000:3000"
     env_file:
@@ -15,11 +13,9 @@ services:
   admin_api:
     image: decider/admin_api:pack
     build:
-      context: ../../containers/admin_api
+      context: ../../admin_api
       dockerfile: Dockerfile.pack
-    volumes:
-        - ../../containers/admin_api:/home/nodejs/app
     ports:
       - "3001:3000"
     env_file:
-      - environments/admin_web.production.env
+      - environments/admin_api.production.env

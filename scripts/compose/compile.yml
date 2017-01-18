@@ -1,13 +1,14 @@
 version: "2"
 services:
   admin_web:
-    image: decider/admin_web:compile
+    image: decider/admin_web:develop
     build:
-      context: ../../containers/admin_web
-      dockerfile: Dockerfile.compile
+      context: ../../admin_web
+      dockerfile: Dockerfile.develop
     volumes:
-        - ../../containers/admin_web:/home/nodejs/app
+        - ../../admin_web:/home/nodejs/app
     ports:
-      - 3000:3000
+      - "3000:3000"
     env_file:
       - environments/admin_web.production.env
+    command: npm run compile
