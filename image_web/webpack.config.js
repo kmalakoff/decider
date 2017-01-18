@@ -12,7 +12,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   resolve: {extensions: ['', '.js', '.jsx']},
-  plugins: [new webpack.DefinePlugin({'process.env': _.pick(process.env, CLIENT_ENV_VARS)})],
+  plugins: [new webpack.DefinePlugin({'process.env': JSON.stringify(_.pick(process.env, CLIENT_ENV_VARS))})],
   module: {
     loaders: [
       {test: /\.jsx?$/, loaders: ['babel'], include: APP_PATH},
