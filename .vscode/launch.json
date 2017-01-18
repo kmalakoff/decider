@@ -10,8 +10,8 @@
       "restart": false,
       "sourceMaps": false,
       "outDir": null,
-      "localRoot": "${workspaceRoot}/admin_web/",      // Path within host (i.e. "/Users/../server"),
-      "remoteRoot": "/home/nodejs/app/"                // Path withing Docker container
+      "localRoot": "${workspaceRoot}/containers/admin_web/",
+      "remoteRoot": "/home/nodejs/app/"
     },
     {
       "name": "Docker Debug (Admin API)",
@@ -22,8 +22,8 @@
       "restart": false,
       "sourceMaps": false,
       "outDir": null,
-      "localRoot": "${workspaceRoot}/admin_api/",      // Path within host (i.e. "/Users/../server"),
-      "remoteRoot": "/home/nodejs/app/"                // Path withing Docker container
+      "localRoot": "${workspaceRoot}/containers/admin_api/",
+      "remoteRoot": "/home/nodejs/app/"
     }
   ]
 }

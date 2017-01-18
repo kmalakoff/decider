@@ -1,0 +1,5 @@
+#!/bin/bash
+
+eval "$(docker-machine env)"
+docker-compose -f scripts/compose/debug.yml build
+docker-compose -f scripts/compose/debug.yml up

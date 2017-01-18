@@ -1,12 +1,12 @@
 version: "2"
 services:
   admin_web:
-    image: decider/admin_web:dist
+    image: decider/admin_web:compile
     build:
-      context: ./admin_web
-      dockerfile: Dockerfile.dist
+      context: ../../containers/admin_web
+      dockerfile: Dockerfile.compile
     volumes:
-        - ./admin_web:/home/nodejs/app
+        - ../../containers/admin_web:/home/nodejs/app
     ports:
       - 3000:3000
     environment:
