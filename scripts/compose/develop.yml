@@ -9,10 +9,9 @@ services:
         - ../../containers/admin_web:/home/nodejs/app
     ports:
       - "3000:3000"
-    environment:
-      - NODE_ENV=development
-      - PORT=3000
-      - ADMIN_API_URL=http://192.168.64.16:3001 # TODO: remove hard coding
+      - "5858:5858"
+    env_file:
+      - environments/admin_web.development.env
 
   admin_api:
     image: decider/admin_api:develop
@@ -23,6 +22,6 @@ services:
         - ../../containers/admin_api:/home/nodejs/app
     ports:
       - "3001:3000"
-    environment:
-      - NODE_ENV=development
-      - PORT=3000
+      - "5859:5858"
+    env_file:
+      - environments/admin_api.development.env

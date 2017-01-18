@@ -9,7 +9,5 @@ services:
         - ../../containers/admin_web:/home/nodejs/app
     ports:
       - 3000:3000
-    environment:
-      - NODE_ENV=production
-      - PORT=3000
-      - ADMIN_API_URL=http://192.168.64.16:3001 # TODO: remove hard coding
+    env_file:
+      - environments/admin_web.production.env
