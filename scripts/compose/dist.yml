@@ -11,4 +11,4 @@ services:
       - "3000:3000"
     env_file:
       - environments/admin_web.production.env
-    command: npm run compile
+    command: npm run dist
