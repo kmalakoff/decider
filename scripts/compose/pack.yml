@@ -1,31 +1,31 @@
 version: "2"
 services:
-  image_web:
-    image: decider/image_web:pack
+  image-web:
+    image: decider/image-web:pack
     build:
-      context: ../../image_web
+      context: ../../image-web
       dockerfile: Dockerfile.pack
     ports:
       - "3000:3000"
     env_file:
-      - environments/image_web.production.env
+      - environments/image-web.production.env
 
-  image_read_api:
-    image: decider/image_read_api:pack
+  image-read-api:
+    image: decider/image-read-api:pack
     build:
-      context: ../../image_read_api
+      context: ../../image-read-api
       dockerfile: Dockerfile.pack
     ports:
       - "3001:3000"
     env_file:
-      - environments/image_read_api.production.env
+      - environments/image-read-api.production.env
 
-  image_command_api:
-    image: decider/image_command_api:pack
+  image-command-api:
+    image: decider/image-command-api:pack
     build:
-      context: ../../image_command_api
+      context: ../../image-command-api
       dockerfile: Dockerfile.pack
     ports:
       - "3002:3000"
     env_file:
-      - environments/image_command_api.production.env
+      - environments/image-command-api.production.env

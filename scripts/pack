@@ -1,6 +1,7 @@
 #!/bin/bash
 
-eval "$(docker-machine env)"
+eval "$(minikube docker-env)"
+#eval "$(docker-machine env)"
 docker-compose -f scripts/compose/dist.yml build
 docker-compose -f scripts/compose/dist.yml up
 docker-compose -f scripts/compose/pack.yml build

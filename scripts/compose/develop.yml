@@ -1,40 +1,40 @@
 version: "2"
 services:
-  image_web:
-    image: decider/image_web:develop
+  image-web:
+    image: decider/image-web:develop
     build:
-      context: ../../image_web
+      context: ../../image-web
       dockerfile: Dockerfile.develop
     volumes:
-        - ../../image_web:/home/nodejs/app
+        - ../../image-web:/home/nodejs/app
     ports:
       - "3000:3000"
       - "5858:5858"
     env_file:
-      - environments/image_web.development.env
+      - environments/image-web.development.env
 
-  image_read_api:
-    image: decider/image_read_api:develop
+  image-read-api:
+    image: decider/image-read-api:develop
     build:
-      context: ../../image_read_api
+      context: ../../image-read-api
       dockerfile: Dockerfile.develop
     volumes:
-        - ../../image_read_api:/home/nodejs/app
+        - ../../image-read-api:/home/nodejs/app
     ports:
       - "3001:3000"
       - "5859:5858"
     env_file:
-      - environments/image_read_api.development.env
+      - environments/image-read-api.development.env
 
-  image_command_api:
-    image: decider/image_command_api:develop
+  image-command-api:
+    image: decider/image-command-api:develop
     build:
-      context: ../../image_command_api
+      context: ../../image-command-api
       dockerfile: Dockerfile.develop
     volumes:
-        - ../../image_command_api:/home/nodejs/app
+        - ../../image-command-api:/home/nodejs/app
     ports:
       - "3002:3000"
       - "5860:5858"
     env_file:
-      - environments/image_command_api.development.env
+      - environments/image-command-api.development.env

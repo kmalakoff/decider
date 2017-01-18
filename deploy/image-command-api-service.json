@@ -1,0 +1,28 @@
+{
+  "kind": "Service",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "image-command-api",
+    "creationTimestamp": null,
+    "labels": {
+      "service": "image-command-api"
+    }
+  },
+  "spec": {
+    "type": "NodePort",
+    "ports": [
+      {
+        "name": "3002",
+        "protocol": "TCP",
+        "port": 3002,
+        "targetPort": 3000
+      }
+    ],
+    "selector": {
+      "service": "image-command-api"
+    }
+  },
+  "status": {
+    "loadBalancer": {}
+  }
+}

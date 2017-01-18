@@ -10,7 +10,7 @@
       "restart": false,
       "sourceMaps": false,
       "outDir": null,
-      "localRoot": "${workspaceRoot}/image_web/",
+      "localRoot": "${workspaceRoot}/image-web/",
       "remoteRoot": "/home/nodejs/app/"
     },
     {
@@ -22,7 +22,7 @@
       "restart": false,
       "sourceMaps": false,
       "outDir": null,
-      "localRoot": "${workspaceRoot}/image_read_api/",
+      "localRoot": "${workspaceRoot}/image-read-api/",
       "remoteRoot": "/home/nodejs/app/"
     },
     {
@@ -34,7 +34,7 @@
       "restart": false,
       "sourceMaps": false,
       "outDir": null,
-      "localRoot": "${workspaceRoot}/image_command_api/",
+      "localRoot": "${workspaceRoot}/image-command-api/",
       "remoteRoot": "/home/nodejs/app/"
     }
   ]
