@@ -3,7 +3,7 @@
   "apiVersion": "extensions/v1beta1",
   "metadata": {
     "name": "web",
-    "namespace": "dist",
+    "namespace": "production",
     "creationTimestamp": null
   },
   "spec": {
@@ -37,11 +37,11 @@
               },
               {
                 "name": "READ_API_URL",
-                "value": "http://api-read.decider.dist"
+                "value": "http://local-production-api-read.decider.com"
               },
               {
                 "name": "COMMAND_API_URL",
-                "value": "http://api-command.decider.dist"
+                "value": "http://local-production-api-command.decider.com"
               }
             ],
             "resources": {}

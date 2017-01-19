@@ -3,7 +3,7 @@
   "apiVersion": "v1",
   "metadata": {
     "name": "api-read",
-    "namespace": "dist",
+    "namespace": "production",
     "creationTimestamp": null,
     "labels": {
       "service": "api-read"

@@ -2,10 +2,10 @@
 
 tag=dev
 namespace=decider
-images=($(ls -d images/*))
+dir=`dirname $(greadlink -f ${BASH_SOURCE[0]} || readlink -f ${BASH_SOURCE[0]})`
 
-for path in "${images[@]}"
-do
+eval "$(docker-machine env)"
+ls -d images/* | while read path; do
   file=${path##*/}
   docker rmi $(docker images -q $namespace/$file:$tag) -f || true
 done

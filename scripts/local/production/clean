@@ -2,12 +2,17 @@
 
 tag=dist
 namespace=decider
-images=($(ls -d images/*))
+dir=`dirname $(greadlink -f ${BASH_SOURCE[0]} || readlink -f ${BASH_SOURCE[0]})`
 
-for path in "${images[@]}"
-do
+eval "$(docker-machine env)"
+ls -d images/web* | while read path; do
   file=${path##*/}
   docker rmi $(docker images -q $namespace/$file:$tag-pack) -f || true
+done
+
+eval "$(minikube docker-env)"
+ls -d images/* | while read path; do
+  file=${path##*/}
   docker rmi $(docker images -q $namespace/$file:$tag) -f || true
 done
 docker rmi $(docker images --quiet --filter "dangling=true") || true

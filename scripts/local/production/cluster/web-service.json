@@ -3,7 +3,7 @@
   "apiVersion": "v1",
   "metadata": {
     "name": "web",
-    "namespace": "dist",
+    "namespace": "production",
     "creationTimestamp": null,
     "labels": {
       "service": "web"

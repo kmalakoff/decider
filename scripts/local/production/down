@@ -7,4 +7,4 @@ kubectl delete -f scripts/local/production/cluster/api-read-service.json
 kubectl delete -f scripts/local/production/cluster/web-deployment.json
 kubectl delete -f scripts/local/production/cluster/web-service.json
 kubectl delete -f scripts/local/production/cluster/local-forwarding-service.json
-kubectl delete namespace dist
+kubectl delete namespace production

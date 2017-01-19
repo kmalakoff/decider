@@ -1,8 +1,0 @@
-#!/bin/bash
-
-kubectl delete -f deploy/api-command-deployment.json
-kubectl delete -f deploy/api-command-service.json
-kubectl delete -f deploy/api-read-deployment.json
-kubectl delete -f deploy/api-read-service.json
-kubectl delete -f deploy/web-deployment.json
-kubectl delete -f deploy/web-service.json

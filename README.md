@@ -73,7 +73,7 @@ kubectl create namespace dev
 kubectl create namespace dist
 kubectl create -f deploy/local-forwarding-dev-service.yaml 
 kubectl create -f deploy/local-forwarding-dist-service.yaml 
-echo "$(minikube ip) www.decider.dist api-read.decider.dist api-command.decider.dist" | sudo tee -a /etc/hosts
+echo "$(minikube ip) local-production-web.decider.com local-production-api-read.decider.com local-production-api-command.decider.com" | sudo tee -a /etc/hosts
 echo "$(minikube ip) www.decider.dev api-read.decider.dev api-command.decider.dev" | sudo tee -a /etc/hosts
 
 https://github.com/kubernetes/ingress/blob/master/docs/dev/setup.md

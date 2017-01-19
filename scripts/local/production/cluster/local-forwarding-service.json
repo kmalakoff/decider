@@ -3,12 +3,12 @@
   "kind": "Ingress",
   "metadata": {
     "name": "local-forwarding",
-    "namespace": "dist"
+    "namespace": "production"
   },
   "spec": {
     "rules": [
       {
-        "host": "www.decider.dist",
+        "host": "local-production-web.decider.com",
         "http": {
           "paths": [
             {
@@ -21,7 +21,7 @@
         }
       },
       {
-        "host": "api-read.decider.dist",
+        "host": "local-production-api-read.decider.com",
         "http": {
           "paths": [
             {
@@ -34,7 +34,7 @@
         }
       },
       {
-        "host": "api-command.decider.dist",
+        "host": "local-production-api-command.decider.com",
         "http": {
           "paths": [
             {

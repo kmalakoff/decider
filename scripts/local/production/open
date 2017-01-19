@@ -1,0 +1,3 @@
+#!/bin/bash
+
+open http://local-production-web.decider.com
