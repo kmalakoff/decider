@@ -8,7 +8,7 @@ minikube start --memory=8192 --vm-driver=xhyve
 <!--minikube ssh -- sudo /usr/local/etc/init.d/nfs-client start
 minikube ssh -- sudo mkdir /Users
 minikube ssh -- sudo mount 192.168.64.1:/Users /Users -o rw,async,noatime,rsize=32768,wsize=32768,proto=tcp-->
-eval "$(minikube docker-env)"
+eval $(minikube docker-env)
 
 minikube service web --namespace dist
 
@@ -17,7 +17,7 @@ By hand - Development
 - Add bash to dockerfile:
 RUN apk add --update bash && rm -rf /var/cache/apk/*
 
-eval "$(docker-machine env)"
+eval $(docker-machine env)
 
 - Build and run:
 docker build -t decider/web:dev -f web/Dockerfile.dev web/

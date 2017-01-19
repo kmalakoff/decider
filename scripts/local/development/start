@@ -1,0 +1,4 @@
+#!/bin/bash
+
+docker-machine start default
+echo "eval \$(docker-machine env default)"
