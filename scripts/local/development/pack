@@ -1,11 +1,6 @@
 #!/bin/bash
 
-tag=dev
-namespace=decider
 dir=`dirname $(greadlink -f ${BASH_SOURCE[0]} || readlink -f ${BASH_SOURCE[0]})`
 
 eval $(docker-machine env)
-ls -d images/* | while read path; do
-  file=${path##*/}
-  docker build -t $namespace/$file:$tag -f $path/Dockerfile.$tag $path/
-done
+docker-compose -f $dir/cluster/docker-compose.yml build

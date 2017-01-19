@@ -15,4 +15,5 @@ ls -d images/* | while read path; do
   file=${path##*/}
   docker rmi $(docker images -q $namespace/$file:$tag) -f || true
 done
+
 docker rmi $(docker images --quiet --filter "dangling=true") || true
