@@ -1,4 +1,0 @@
-#!/bin/bash
-
-eval "$(docker-machine env)"
-open http://$(docker-machine ip):3000

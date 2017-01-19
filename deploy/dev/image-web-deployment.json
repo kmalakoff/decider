@@ -3,6 +3,7 @@
   "apiVersion": "extensions/v1beta1",
   "metadata": {
     "name": "image-web",
+    "namespace": "dev",
     "creationTimestamp": null
   },
   "spec": {
@@ -18,7 +19,7 @@
         "containers": [
           {
             "name": "image-web",
-            "image": "decider/image-web:pack",
+            "image": "decider/image-web:dev",
             "ports": [
               {
                 "containerPort": 3000,
@@ -36,11 +37,11 @@
               },
               {
                 "name": "READ_API_URL",
-                "value": "http://192.168.64.7:3001"
+                "value": "http://read-api.decider.com"
               },
               {
                 "name": "COMMAND_API_URL",
-                "value": "http://192.168.64.7:3002"
+                "value": "http://command-api.decider.com"
               }
             ],
             "resources": {}

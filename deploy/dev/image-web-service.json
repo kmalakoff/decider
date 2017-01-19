@@ -1,0 +1,29 @@
+{
+  "kind": "Service",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "image-web",
+    "namespace": "dev",
+    "creationTimestamp": null,
+    "labels": {
+      "service": "image-web"
+    }
+  },
+  "spec": {
+    "type": "NodePort",
+    "ports": [
+      {
+        "name": "3000",
+        "protocol": "TCP",
+        "port": 3000,
+        "targetPort": 3000
+      }
+    ],
+    "selector": {
+      "service": "image-web"
+    }
+  },
+  "status": {
+    "loadBalancer": {}
+  }
+}

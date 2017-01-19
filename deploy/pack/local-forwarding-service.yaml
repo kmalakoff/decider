@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: local-forwarding-pack
+  namespace: pack
+spec:
+  rules:
+  - host: www.decider.pack
+    http:
+      paths:
+      - backend:
+          serviceName: image-web
+          servicePort: 3000
+  - host: read-api.decider.pack
+    http:
+      paths:
+      - backend:
+          serviceName: image-read-api
+          servicePort: 3001
+  - host: read-api.decider.pack
+    http:
+      paths:
+      - backend:
+          serviceName: image-command-api
+          servicePort: 3002

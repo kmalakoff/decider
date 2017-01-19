@@ -1,10 +1,10 @@
 version: "2"
 services:
   image-web:
-    image: decider/image-web:develop
+    image: decider/image-web:dev
     build:
       context: ../../image-web
-      dockerfile: Dockerfile.develop
+      dockerfile: Dockerfile.dev
     volumes:
         - ../../image-web:/home/nodejs/app
     env_file:

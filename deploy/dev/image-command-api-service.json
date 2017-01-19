@@ -3,6 +3,7 @@
   "apiVersion": "v1",
   "metadata": {
     "name": "image-command-api",
+    "namespace": "dev",
     "creationTimestamp": null,
     "labels": {
       "service": "image-command-api"

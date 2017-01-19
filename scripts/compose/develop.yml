@@ -1,10 +1,10 @@
 version: "2"
 services:
   image-web:
-    image: decider/image-web:develop
+    image: decider/image-web:dev
     build:
       context: ../../image-web
-      dockerfile: Dockerfile.develop
+      dockerfile: Dockerfile.dev
     volumes:
         - ../../image-web:/home/nodejs/app
     ports:
@@ -14,10 +14,10 @@ services:
       - environments/image-web.development.env
 
   image-read-api:
-    image: decider/image-read-api:develop
+    image: decider/image-read-api:dev
     build:
       context: ../../image-read-api
-      dockerfile: Dockerfile.develop
+      dockerfile: Dockerfile.dev
     volumes:
         - ../../image-read-api:/home/nodejs/app
     ports:
@@ -27,10 +27,10 @@ services:
       - environments/image-read-api.development.env
 
   image-command-api:
-    image: decider/image-command-api:develop
+    image: decider/image-command-api:dev
     build:
       context: ../../image-command-api
-      dockerfile: Dockerfile.develop
+      dockerfile: Dockerfile.dev
     volumes:
         - ../../image-command-api:/home/nodejs/app
     ports:
