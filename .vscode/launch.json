@@ -10,7 +10,7 @@
       "restart": false,
       "sourceMaps": false,
       "outDir": null,
-      "localRoot": "${workspaceRoot}/web/",
+      "localRoot": "${workspaceRoot}/images/web/",
       "remoteRoot": "/home/nodejs/app/"
     },
     {
@@ -22,11 +22,11 @@
       "restart": false,
       "sourceMaps": false,
       "outDir": null,
-      "localRoot": "${workspaceRoot}/api-read/",
+      "localRoot": "${workspaceRoot}/images/api-read/",
       "remoteRoot": "/home/nodejs/app/"
     },
     {
-      "name": "Docker Debug (Write API)",
+      "name": "Docker Debug (Command API)",
       "type": "node",
       "request": "attach",
       "port": 5860,
@@ -34,7 +34,7 @@
       "restart": false,
       "sourceMaps": false,
       "outDir": null,
-      "localRoot": "${workspaceRoot}/api-command/",
+      "localRoot": "${workspaceRoot}/images/api-command/",
       "remoteRoot": "/home/nodejs/app/"
     }
   ]
