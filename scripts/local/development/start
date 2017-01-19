@@ -5,7 +5,6 @@ namespace=decider
 # images=($(ls -d images/*))
 images=("images/api-command")
 
-eval "$(minikube docker-env)"
 for path in "${images[@]}"
 do
   file=${path##*/}

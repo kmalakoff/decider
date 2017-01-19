@@ -1,5 +1,4 @@
 #!/bin/bash
 
-eval "$(minikube docker-env)"
 docker-compose -f scripts/compose/develop.yml build
 docker-compose -f scripts/compose/develop.yml up

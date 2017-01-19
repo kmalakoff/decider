@@ -1,6 +1,5 @@
 #!/bin/bash
 
-eval "$(minikube docker-env)"
 kubectl create -f deploy/api-command-deployment.json
 kubectl create -f deploy/api-command-service.json
 kubectl create -f deploy/api-read-deployment.json

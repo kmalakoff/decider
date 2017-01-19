@@ -1,10 +1,27 @@
+brew install coreutils
+
+https://github.com/kubernetes/minikube/releases
+
+https://github.com/kubernetes/minikube/issues/2
+
+minikube start --memory=8192 --vm-driver=xhyve
+<!--minikube ssh -- sudo /usr/local/etc/init.d/nfs-client start
+minikube ssh -- sudo mkdir /Users
+minikube ssh -- sudo mount 192.168.64.1:/Users /Users -o rw,async,noatime,rsize=32768,wsize=32768,proto=tcp-->
+eval "$(minikube docker-env)"
+
+minikube service web --namespace dist
+
 By hand - Development
 ===========================================================
 - Add bash to dockerfile:
 RUN apk add --update bash && rm -rf /var/cache/apk/*
 
+eval "$(docker-machine env)"
+
 - Build and run:
 docker build -t decider/web:dev -f web/Dockerfile.dev web/
+docker run -v $(pwd)/images/api-command:/home/nodejs/app -it decider/api-command:dev bash
 docker run -v $(pwd)/images/web:/home/nodejs/app -it decider/web:dist-pack bash
 
 Install docker (Mac)
@@ -18,7 +35,7 @@ docker-machine create --driver xhyve --xhyve-memory-size=8192 --xhyve-experiment
 Install minikube
 ===========================================================
 https://github.com/kubernetes/minikube/releases
-- brew doesn't work - TODO: try a clean install
+- brew doesn't work - TODO: try a clean install - problem with python?
 
 minikube service web --url
 kubectl describe service web

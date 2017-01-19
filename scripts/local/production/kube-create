@@ -1,0 +1,10 @@
+#!/bin/bash
+
+kubectl create namespace dist
+kubectl create -f scripts/local/production/cluster/api-command-deployment.json
+kubectl create -f scripts/local/production/cluster/api-command-service.json
+kubectl create -f scripts/local/production/cluster/api-read-deployment.json
+kubectl create -f scripts/local/production/cluster/api-read-service.json
+kubectl create -f scripts/local/production/cluster/web-deployment.json
+kubectl create -f scripts/local/production/cluster/web-service.json
+kubectl create -f scripts/local/production/cluster/local-forwarding-service.json

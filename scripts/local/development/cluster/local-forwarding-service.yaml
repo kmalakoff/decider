@@ -16,10 +16,10 @@ spec:
       paths:
       - backend:
           serviceName: api-read
-          servicePort: 3001
+          servicePort: 3000
   - host: api-read.decider.dev
     http:
       paths:
       - backend:
           serviceName: api-command
-          servicePort: 3002
+          servicePort: 3000

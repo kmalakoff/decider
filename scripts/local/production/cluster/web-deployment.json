@@ -37,11 +37,11 @@
               },
               {
                 "name": "READ_API_URL",
-                "value": "http://api-read.decider.com"
+                "value": "http://api-read.decider.dist"
               },
               {
                 "name": "COMMAND_API_URL",
-                "value": "http://api-command.decider.com"
+                "value": "http://api-command.decider.dist"
               }
             ],
             "resources": {}

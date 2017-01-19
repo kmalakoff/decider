@@ -21,7 +21,7 @@ services:
     volumes:
         - ../../api-read:/home/nodejs/app
     ports:
-      - "3001:3000"
+      - "3000:3000"
       - "5859:5858"
     env_file:
       - environments/api-read.development.env
@@ -34,7 +34,7 @@ services:
     volumes:
         - ../../api-command:/home/nodejs/app
     ports:
-      - "3002:3000"
+      - "3000:3000"
       - "5860:5858"
     env_file:
       - environments/api-command.development.env
