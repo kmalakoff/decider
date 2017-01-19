@@ -4,8 +4,8 @@ By hand - Development
 RUN apk add --update bash && rm -rf /var/cache/apk/*
 
 - Build and run:
-docker build -t decider/image-web:dev -f image-web/Dockerfile.dev image-web/
-docker run -p 3000:3000 -v image-web:/home/nodejs/app -it decider/image-web:dev bash
+docker build -t decider/web:dev -f web/Dockerfile.dev web/
+docker run -v $(pwd)/images/web:/home/nodejs/app -it decider/web:dist-pack bash
 
 Install docker (Mac)
 ===========================================================
@@ -20,8 +20,8 @@ Install minikube
 https://github.com/kubernetes/minikube/releases
 - brew doesn't work - TODO: try a clean install
 
-minikube service image-web --url
-kubectl describe service image-web
+minikube service web --url
+kubectl describe service web
 
 
 Generate kubernetes files from docker compose
@@ -32,7 +32,7 @@ wget https://github.com/kubernetes-incubator/kompose/releases/download/v0.1.2/ko
 tar -xvf kompose_darwin-amd64.tar.gz --strip 1
 sudo mv kompose /usr/local/bin
 
-kompose -f scripts/compose/pack.yml convert
+kompose -f scripts/compose/dist.yml convert
 
 Update services:
   "spec": {
@@ -47,17 +47,17 @@ scripts/kube-delete
 
 Open:
 
-minikube service image-web
-kubectl expose service image-web
+minikube service web
+kubectl expose service web
 
-kubectl scale --replicas=3 deployment/image-web
+kubectl scale --replicas=3 deployment/web
 
 kubectl create namespace dev
-kubectl create namespace pack
+kubectl create namespace dist
 kubectl create -f deploy/local-forwarding-dev-service.yaml 
-kubectl create -f deploy/local-forwarding-pack-service.yaml 
-echo "$(minikube ip) www.decider.pack read-api.decider.pack command-api.decider.pack" | sudo tee -a /etc/hosts
-echo "$(minikube ip) www.decider.dev read-api.decider.dev command-api.decider.dev" | sudo tee -a /etc/hosts
+kubectl create -f deploy/local-forwarding-dist-service.yaml 
+echo "$(minikube ip) www.decider.dist api-read.decider.dist api-command.decider.dist" | sudo tee -a /etc/hosts
+echo "$(minikube ip) www.decider.dev api-read.decider.dev api-command.decider.dev" | sudo tee -a /etc/hosts
 
 https://github.com/kubernetes/ingress/blob/master/docs/dev/setup.md
 minikube addons enable ingress

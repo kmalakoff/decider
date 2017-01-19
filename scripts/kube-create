@@ -1,9 +1,9 @@
 #!/bin/bash
 
 eval "$(minikube docker-env)"
-kubectl create -f deploy/image-command-api-deployment.json
-kubectl create -f deploy/image-command-api-service.json
-kubectl create -f deploy/image-read-api-deployment.json
-kubectl create -f deploy/image-read-api-service.json
-kubectl create -f deploy/image-web-deployment.json
-kubectl create -f deploy/image-web-service.json
+kubectl create -f deploy/api-command-deployment.json
+kubectl create -f deploy/api-command-service.json
+kubectl create -f deploy/api-read-deployment.json
+kubectl create -f deploy/api-read-service.json
+kubectl create -f deploy/web-deployment.json
+kubectl create -f deploy/web-service.json

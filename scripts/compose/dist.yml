@@ -1,12 +1,12 @@
 version: "2"
 services:
-  image-web:
-    image: decider/image-web:dev
+  web:
+    image: decider/web:dev
     build:
-      context: ../../image-web
+      context: ../../web
       dockerfile: Dockerfile.dev
     volumes:
-        - ../../image-web:/home/nodejs/app
+        - ../../web:/home/nodejs/app
     env_file:
-      - environments/image-web.production.env
+      - environments/web.production.env
     command: npm run dist

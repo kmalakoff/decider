@@ -1,0 +1,13 @@
+#!/bin/bash
+
+tag=dev
+namespace=decider
+images=($(ls -d images/*))
+
+eval "$(minikube docker-env)"
+for path in "${images[@]}"
+do
+  file=${path##*/}
+  docker rmi $(docker images -q $namespace/$file:$tag) -f || true
+done
+docker rmi $(docker images --quiet --filter "dangling=true") || true

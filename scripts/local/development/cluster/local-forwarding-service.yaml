@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: local-forwarding-dev
+  namespace: dev
+spec:
+  rules:
+  - host: www.decider.dev
+    http:
+      paths:
+      - backend:
+          serviceName: web
+          servicePort: 3000
+  - host: api-read.decider.dev
+    http:
+      paths:
+      - backend:
+          serviceName: api-read
+          servicePort: 3001
+  - host: api-read.decider.dev
+    http:
+      paths:
+      - backend:
+          serviceName: api-command
+          servicePort: 3002

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+tag=dist
+namespace=decider
+# images=($(ls -d images/*))
+images=("images/web")
+
+eval "$(minikube docker-env)"
+for path in "${images[@]}"
+do
+  file=${path##*/}
+  docker build -t $namespace/$file:$tag-pack -f $path/Dockerfile.dev $path/
+  docker run -v $(pwd)/$path:/home/nodejs/app -it $namespace/$file:$tag-pack npm run dist
+  docker build -t $namespace/$file:$tag -f $path/Dockerfile.$tag $path/
+done

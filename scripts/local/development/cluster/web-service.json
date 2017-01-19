@@ -1,0 +1,29 @@
+{
+  "kind": "Service",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "web",
+    "namespace": "dev",
+    "creationTimestamp": null,
+    "labels": {
+      "service": "web"
+    }
+  },
+  "spec": {
+    "type": "NodePort",
+    "ports": [
+      {
+        "name": "3000",
+        "protocol": "TCP",
+        "port": 3000,
+        "targetPort": 3000
+      }
+    ],
+    "selector": {
+      "service": "web"
+    }
+  },
+  "status": {
+    "loadBalancer": {}
+  }
+}

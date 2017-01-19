@@ -1,0 +1,12 @@
+#!/bin/bash
+
+tag=dev
+namespace=decider
+images=($(ls -d images/*))
+
+eval "$(minikube docker-env)"
+for path in "${images[@]}"
+do
+  file=${path##*/}
+  docker build -t $namespace/$file:$tag -f $path/Dockerfile.$tag $path/
+done

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+tag=dev
+namespace=decider
+# images=($(ls -d images/*))
+images=("images/api-command")
+
+eval "$(minikube docker-env)"
+for path in "${images[@]}"
+do
+  file=${path##*/}
+  docker run -v $(pwd)/$path:/home/nodejs/app -t $namespace/$file:$tag
+done

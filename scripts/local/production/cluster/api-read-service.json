@@ -1,0 +1,29 @@
+{
+  "kind": "Service",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "api-read",
+    "namespace": "dist",
+    "creationTimestamp": null,
+    "labels": {
+      "service": "api-read"
+    }
+  },
+  "spec": {
+    "type": "NodePort",
+    "ports": [
+      {
+        "name": "3001",
+        "protocol": "TCP",
+        "port": 3001,
+        "targetPort": 3000
+      }
+    ],
+    "selector": {
+      "service": "api-read"
+    }
+  },
+  "status": {
+    "loadBalancer": {}
+  }
+}
