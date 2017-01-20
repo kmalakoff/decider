@@ -10,7 +10,7 @@ const CLIENT_ENV_BOOTSTRAP = 'window.__ENV__={};' + CLIENT_ENV_VARS.map(key => `
 const CLIENT_HTML = `<html><head><title>Decider</title></head><body><div id="root"></div><script>(function() {${CLIENT_ENV_BOOTSTRAP}})();</script><script src="/client/bundle.js"></script></body></html>`;
 app.get('/', (req, res) => { res.type('text/html; charset=UTF-8'); res.send(CLIENT_HTML); });
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV !== 'production') {
   const _ = require('lodash');
 
   let webpack = require('webpack');
@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === 'development') {
     devtool: 'eval',
     entry: [
       'react-hot-loader/patch',
-      `webpack-dev-server/client?http://0.0.0.0:${PORT}`,
+      'webpack-hot-middleware/client?reload=true',
       webpackConfig.entry
     ],
     output: {
