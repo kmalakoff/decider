@@ -1,5 +1,5 @@
 #!/bin/bash
 
-dir=`dirname $(greadlink -f ${BASH_SOURCE[0]} || readlink -f ${BASH_SOURCE[0]})`
+dir=`dirname $(greadlink -f ${BASH_SOURCE[0]} || readlink -f ${BASH_SOURCE[0]})`; cd $(dirname $(dirname $(dirname $dir)))
 
 docker-compose -f $dir/cluster/docker-compose.yml down
