@@ -1,5 +1,7 @@
 #!/bin/bash
 
+env=production
+
 eval $(minikube docker-env)
 kubectl delete -f scripts/local/production/cluster/api-command-deployment.json
 kubectl delete -f scripts/local/production/cluster/api-command-service.json
@@ -8,4 +10,4 @@ kubectl delete -f scripts/local/production/cluster/api-read-service.json
 kubectl delete -f scripts/local/production/cluster/web-deployment.json
 kubectl delete -f scripts/local/production/cluster/web-service.json
 kubectl delete -f scripts/local/production/cluster/local-forwarding-service.json
-kubectl delete namespace production
+kubectl delete namespace $env

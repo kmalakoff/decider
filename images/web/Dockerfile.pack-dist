@@ -1,0 +1,12 @@
+FROM node:7.4.0-alpine
+
+RUN apk add --update bash && rm -rf /var/cache/apk/*
+
+RUN addgroup nodejs && adduser -s /bin/bash -D -G nodejs nodejs
+USER nodejs
+
+RUN mkdir -p /home/nodejs/app
+WORKDIR /home/nodejs/app
+# mounted and installed when run
+
+CMD ["npm", "run", "dist"]

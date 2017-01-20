@@ -1,18 +1,22 @@
 #!/bin/bash
 
-tag=dist
+tag=pack
 namespace=decider
 dir=`dirname $(greadlink -f ${BASH_SOURCE[0]} || readlink -f ${BASH_SOURCE[0]})`
 
 eval $(docker-machine env)
-ls -d images/web* | while read path; do
-  file=${path##*/}
-  docker build -t $namespace/$file:$tag-pack -f $path/Dockerfile.dev $path/
-  docker run -v $(pwd)/$path:/home/nodejs/app --env-file $dir/environments/$file.env -t $namespace/$file:$tag-pack npm run dist
+ls -d images/* | while read path; do
+  if [ -f $path/Dockerfile.$tag-dist ]; then
+    file=${path##*/}
+    docker build -t $namespace/$file:$tag-dist -f $path/Dockerfile.$tag-dist $path/
+    docker run -v $(pwd)/$path:/home/nodejs/app --env-file $dir/environments/$file.env -t $namespace/$file:$tag-dist
+  fi
 done
 
 eval $(minikube docker-env)
 ls -d images/* | while read path; do
-  file=${path##*/}
-  docker build -t $namespace/$file:$tag -f $path/Dockerfile.$tag $path/
+  if [ -f $path/Dockerfile.$tag ]; then
+    file=${path##*/}
+    docker build -t $namespace/$file:$tag -f $path/Dockerfile.$tag $path/
+  fi
 done

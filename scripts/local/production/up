@@ -1,7 +1,9 @@
 #!/bin/bash
 
+env=production
+
 eval $(minikube docker-env)
-kubectl create namespace production
+kubectl create namespace $env
 kubectl create -f scripts/local/production/cluster/api-command-deployment.json
 kubectl create -f scripts/local/production/cluster/api-command-service.json
 kubectl create -f scripts/local/production/cluster/api-read-deployment.json

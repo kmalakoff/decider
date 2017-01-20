@@ -1,13 +1,15 @@
 #!/bin/bash
 
-tag=dist
+tag=pack
 namespace=decider
 dir=`dirname $(greadlink -f ${BASH_SOURCE[0]} || readlink -f ${BASH_SOURCE[0]})`
 
 eval $(docker-machine env)
-ls -d images/web* | while read path; do
-  file=${path##*/}
-  docker rmi $(docker images -q $namespace/$file:$tag-pack) -f || true
+ls -d images/* | while read path; do
+  if [ -f $path/Dockerfile.$tag-dist ]; then
+    file=${path##*/}
+    docker rmi $(docker images -q $namespace/$file:$tag-dist) -f || true
+  fi
 done
 
 eval $(minikube docker-env)
