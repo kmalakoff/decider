@@ -6,7 +6,7 @@
       "type": "node",
       "request": "attach",
       "port": 5858,
-      "address": "192.168.64.16",
+      "address": "127.0.0.1",
       "restart": false,
       "sourceMaps": false,
       "outDir": null,
@@ -14,27 +14,15 @@
       "remoteRoot": "/home/nodejs/app/"
     },
     {
-      "name": "Docker Debug (Read API)",
+      "name": "Docker Debug (API)",
       "type": "node",
       "request": "attach",
       "port": 5859,
-      "address": "192.168.64.16",
+      "address": "127.0.0.1",
       "restart": false,
       "sourceMaps": false,
       "outDir": null,
-      "localRoot": "${workspaceRoot}/images/api-read/",
-      "remoteRoot": "/home/nodejs/app/"
-    },
-    {
-      "name": "Docker Debug (Command API)",
-      "type": "node",
-      "request": "attach",
-      "port": 5860,
-      "address": "192.168.64.16",
-      "restart": false,
-      "sourceMaps": false,
-      "outDir": null,
-      "localRoot": "${workspaceRoot}/images/api-command/",
+      "localRoot": "${workspaceRoot}/images/api/",
       "remoteRoot": "/home/nodejs/app/"
     }
   ]

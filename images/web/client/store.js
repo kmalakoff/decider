@@ -13,11 +13,8 @@ export default class Store {
 
   async fetch() {
     try {
-      let res1 = await fetch(`${process.env.READ_API_URL}/api/things`);
-      let things1 = await res1.json(); 
-      let res2 = await fetch(`${process.env.COMMAND_API_URL}/api/things`);
-      let things2 = await res2.json(); 
-      this.things = things1.concat(things2); 
+      let res = await fetch(`${process.env.API_URL}/api/things`);
+      this.things = await res.json();
     } catch (err) { alert(err); }
   }
 }

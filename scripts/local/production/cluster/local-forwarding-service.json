@@ -21,25 +21,12 @@
         }
       },
       {
-        "host": "local-production-api-read.decider.com",
+        "host": "local-production-api.decider.com",
         "http": {
           "paths": [
             {
               "backend": {
-                "serviceName": "api-read",
-                "servicePort": 3000
-              }
-            }
-          ]
-        }
-      },
-      {
-        "host": "local-production-api-command.decider.com",
-        "http": {
-          "paths": [
-            {
-              "backend": {
-                "serviceName": "api-command",
+                "serviceName": "api",
                 "servicePort": 3000
               }
             }

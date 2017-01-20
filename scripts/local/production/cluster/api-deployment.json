@@ -2,7 +2,7 @@
   "kind": "Deployment",
   "apiVersion": "extensions/v1beta1",
   "metadata": {
-    "name": "api-command",
+    "name": "api",
     "namespace": "production",
     "creationTimestamp": null
   },
@@ -12,14 +12,14 @@
       "metadata": {
         "creationTimestamp": null,
         "labels": {
-          "service": "api-command"
+          "service": "api"
         }
       },
       "spec": {
         "containers": [
           {
-            "name": "api-command",
-            "image": "decider/api-command:pack",
+            "name": "api",
+            "image": "decider/api:pack",
             "ports": [
               {
                 "containerPort": 3000,

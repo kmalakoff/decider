@@ -37,11 +37,11 @@
               },
               {
                 "name": "READ_API_URL",
-                "value": "http://local-production-api-read.decider.com"
+                "value": "http://local-production-api.decider.com"
               },
               {
-                "name": "COMMAND_API_URL",
-                "value": "http://local-production-api-command.decider.com"
+                "name": "API_URL",
+                "value": "http://local-production-api.decider.com"
               }
             ],
             "resources": {}

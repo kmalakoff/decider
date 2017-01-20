@@ -71401,7 +71401,7 @@
 	            case 6:
 	              things1 = _context.sent;
 	              _context.next = 9;
-	              return fetch(process.env.COMMAND_API_URL + '/api/things');
+	              return fetch(process.env.API_URL + '/api/things');
 
 	            case 9:
 	              res2 = _context.sent;

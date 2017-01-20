@@ -2,11 +2,11 @@
   "kind": "Service",
   "apiVersion": "v1",
   "metadata": {
-    "name": "api-read",
+    "name": "api",
     "namespace": "production",
     "creationTimestamp": null,
     "labels": {
-      "service": "api-read"
+      "service": "api"
     }
   },
   "spec": {
@@ -20,7 +20,7 @@
       }
     ],
     "selector": {
-      "service": "api-read"
+      "service": "api"
     }
   },
   "status": {

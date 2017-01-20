@@ -19,12 +19,10 @@ kubectl scale --replicas=3 decider/web --namespace production
 DNS
 ===========================================================
 echo "$(minikube ip) local-production-web.decider.com" | sudo tee -a /etc/hosts
-echo "$(minikube ip) local-production-api-command.decider.com" | sudo tee -a /etc/hosts
-echo "$(minikube ip) local-production-api-read.decider.com" | sudo tee -a /etc/hosts
+echo "$(minikube ip) local-production-api.decider.com" | sudo tee -a /etc/hosts
 
 echo "$(docker-machine ip) local-development-web.decider.com" | sudo tee -a /etc/hosts
-echo "$(docker-machine ip) local-development-api-command.decider.com" | sudo tee -a /etc/hosts
-echo "$(docker-machine ip) local-development-api-read.decider.com" | sudo tee -a /etc/hosts
+echo "$(docker-machine ip) local-development-api.decider.com" | sudo tee -a /etc/hosts
 
 Run
 ===========================================================
@@ -44,7 +42,7 @@ RUN apk add --update bash && rm -rf /var/cache/apk/*
 
 - Build and run:
 docker build -t decider/web:dev -f web/Dockerfile.dev web/
-docker run -v $(pwd)/images/api-command:/home/nodejs/app -it decider/api-command:dev bash
+docker run -v $(pwd)/images/api:/home/nodejs/app -it decider/api:dev bash
 docker run -v $(pwd)/images/web:/home/nodejs/app -it decider/web:pack-pack bash
 
 Install minikube
