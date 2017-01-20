@@ -11,10 +11,8 @@ async function initialize() {
   Object.values(require('require-directory')(module, './routes')).forEach((m) => m({app, services}));
 
   const PORT = +process.env.PORT;
-  app.listen(PORT, (err) => {
-    if (err) return console.error(`Server failed to start on port: ${PORT}`, err);
-    console.log(`Server started on port: ${PORT}`);
-  });
+  try { await app.listen(PORT); console.log(`Server started on port: ${PORT}`); }
+  catch(err) { return console.error(`Server failed to start on port: ${PORT}`, err); }
 }
 
 initialize();
