@@ -1,4 +1,5 @@
 brew install coreutils
+brew install kubectl
 https://github.com/kubernetes/minikube/releases
 
 minikube service web --namespace production
