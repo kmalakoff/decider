@@ -2,5 +2,4 @@
 
 dir=`dirname $(greadlink -f ${BASH_SOURCE[0]} || readlink -f ${BASH_SOURCE[0]})`
 
-eval $(docker-machine env)
 docker-compose -f $dir/cluster/docker-compose.yml down

@@ -29,7 +29,6 @@ module.exports = function(app) {
       noInfo: true,
       quiet: false,
       lazy: false,
-      watchOptions: {aggregateTimeout: 300, poll: true},
       stats: {colors: true}
     });
 
