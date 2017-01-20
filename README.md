@@ -64,3 +64,10 @@ kompose -f scripts/compose/dist.yml convert
 Update services:
   "spec": {
     "type": "NodePort",
+
+Credentials
+===========================================================
+- Eventstore
+http://localhost:2113
+login: admin
+password: changeit

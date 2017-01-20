@@ -71384,47 +71384,35 @@
 
 	      return fetch;
 	    }(_asyncToGenerator(regeneratorRuntime.mark(function _callee() {
-	      var res1, things1, res2, things2;
+	      var res;
 	      return regeneratorRuntime.wrap(function _callee$(_context) {
 	        while (1) {
 	          switch (_context.prev = _context.next) {
 	            case 0:
 	              _context.prev = 0;
 	              _context.next = 3;
-	              return fetch(process.env.READ_API_URL + '/api/things');
-
-	            case 3:
-	              res1 = _context.sent;
-	              _context.next = 6;
-	              return res1.json();
-
-	            case 6:
-	              things1 = _context.sent;
-	              _context.next = 9;
 	              return fetch(process.env.API_URL + '/api/things');
 
-	            case 9:
-	              res2 = _context.sent;
+	            case 3:
+	              res = _context.sent;
+	              _context.next = 6;
+	              return res.json();
+
+	            case 6:
+	              this.things = _context.sent;
 	              _context.next = 12;
-	              return res2.json();
-
-	            case 12:
-	              things2 = _context.sent;
-
-	              this.things = things1.concat(things2);
-	              _context.next = 19;
 	              break;
 
-	            case 16:
-	              _context.prev = 16;
+	            case 9:
+	              _context.prev = 9;
 	              _context.t0 = _context['catch'](0);
 	              alert(_context.t0);
-	            case 19:
+	            case 12:
 	            case 'end':
 	              return _context.stop();
 	          }
 	        }
-	      }, _callee, this, [[0, 16]]);
+	      }, _callee, this, [[0, 9]]);
 	    })))
 	  }]);
 

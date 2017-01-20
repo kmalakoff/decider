@@ -5,23 +5,34 @@ services:
     build:
       context: ../../../../images/web
       dockerfile: Dockerfile.dev
-    volumes:
-        - ../../../../images/web:/home/nodejs/app
     ports:
       - "3000:3000"
       - "5858:5858"
     env_file:
       - ../environments/web.env
+    volumes:
+        - ../../../../images/web:/home/nodejs/app
 
   api:
     image: decider/api:dev
     build:
       context: ../../../../images/api
       dockerfile: Dockerfile.dev
-    volumes:
-        - ../../../../images/api:/home/nodejs/app
     ports:
       - "3001:3000"
       - "5859:5858"
     env_file:
       - ../environments/api.env
+    volumes:
+        - ../../../../images/api:/home/nodejs/app
+    depends_on:
+      - "eventstore"
+
+  eventstore:
+    image: decider/eventstore:dev
+    build:
+      context: ../../../../images/eventstore
+      dockerfile: Dockerfile.dev
+    ports:
+      - "1113:1113"
+      - "2113:2113"

@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 const _ = require('lodash');
 
-module.exports = function(app) {
+module.exports = function({app}) {
   if (process.env.NODE_ENV !== 'production') {
     const webpack = require('webpack');
     const webpackMiddleware = require('webpack-dev-middleware');
