@@ -1,13 +1,14 @@
 const path = require('path');
 const express = require('express');
-const webpack = require('webpack');
-const webpackMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
-const webpackConfig = require('../../webpack.config.js');
 const _ = require('lodash');
 
 module.exports = function(app) {
   if (process.env.NODE_ENV !== 'production') {
+    const webpack = require('webpack');
+    const webpackMiddleware = require('webpack-dev-middleware');
+    const webpackHotMiddleware = require('webpack-hot-middleware');
+    const webpackConfig = require('../../webpack.config.js');
+
     const config = _.merge(_.cloneDeep(webpackConfig), {
       devtool: 'eval',
       entry: [
