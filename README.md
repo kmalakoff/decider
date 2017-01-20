@@ -1,23 +1,34 @@
 brew install coreutils
-
 https://github.com/kubernetes/minikube/releases
 
-https://github.com/kubernetes/minikube/issues/2
+minikube service web --namespace production
+kubectl scale --replicas=3 decider/web --namespace production
 
-minikube start --memory=8192 --vm-driver=xhyve
-<!--minikube ssh -- sudo /usr/local/etc/init.d/nfs-client start
-minikube ssh -- sudo mkdir /Users
-minikube ssh -- sudo mount 192.168.64.1:/Users /Users -o rw,async,noatime,rsize=32768,wsize=32768,proto=tcp-->
+DNS
+===========================================================
+echo "$(minikube ip) local-production-web.decider.com" | sudo tee -a /etc/hosts
+echo "$(minikube ip) local-production-api-command.decider.com" | sudo tee -a /etc/hosts
+echo "$(minikube ip) local-production-api-read.decider.com" | sudo tee -a /etc/hosts
+
+echo "$(docker-machine ip) local-development-web.decider.com" | sudo tee -a /etc/hosts
+echo "$(docker-machine ip) local-development-api-command.decider.com" | sudo tee -a /etc/hosts
+echo "$(docker-machine ip) local-development-api-read.decider.com" | sudo tee -a /etc/hosts
+
+Run
+===========================================================
 eval $(minikube docker-env)
+eval $(docker-machine env)
 
-minikube service web --namespace dist
+scripts/{local|remote}/{env}/start
+scripts/{local|remote}/{env}/pack
+scripts/{local|remote}/{env}/up
+scripts/{local|remote}/{env}/down
+scripts/{local|remote}/{env}/stop
 
 By hand - Development
 ===========================================================
 - Add bash to dockerfile:
 RUN apk add --update bash && rm -rf /var/cache/apk/*
-
-eval $(docker-machine env)
 
 - Build and run:
 docker build -t decider/web:dev -f web/Dockerfile.dev web/
@@ -35,11 +46,9 @@ docker-machine create --driver xhyve --xhyve-memory-size=8192 --xhyve-experiment
 Install minikube
 ===========================================================
 https://github.com/kubernetes/minikube/releases
-- brew doesn't work - TODO: try a clean install - problem with python?
 
 minikube service web --url
 kubectl describe service web
-
 
 Generate kubernetes files from docker compose
 ===========================================================
@@ -48,39 +57,8 @@ brew install wget
 wget https://github.com/kubernetes-incubator/kompose/releases/download/v0.1.2/kompose_darwin-amd64.tar.gz
 tar -xvf kompose_darwin-amd64.tar.gz --strip 1
 sudo mv kompose /usr/local/bin
-
 kompose -f scripts/compose/dist.yml convert
 
 Update services:
   "spec": {
     "type": "NodePort",
-
-https://kubernetes.io/docs/user-guide/connecting-applications/
-
-Run:
-
-scripts/kube-create
-scripts/kube-delete
-
-Open:
-
-minikube service web
-kubectl expose service web
-
-kubectl scale --replicas=3 deployment/web
-
-kubectl create namespace dev
-kubectl create namespace dist
-kubectl create -f deploy/local-forwarding-dev-service.yaml 
-kubectl create -f deploy/local-forwarding-dist-service.yaml 
-echo "$(minikube ip) local-production-web.decider.com local-production-api-read.decider.com local-production-api-command.decider.com" | sudo tee -a /etc/hosts
-echo "$(minikube ip) www.decider.dev api-read.decider.dev api-command.decider.dev" | sudo tee -a /etc/hosts
-
-https://github.com/kubernetes/ingress/blob/master/docs/dev/setup.md
-minikube addons enable ingress
-https://github.com/kubernetes/minikube/tree/master/deploy/addons/ingress
-https://github.com/kubernetes/contrib/tree/master/ingress/controllers/nginx
-
-https://medium.com/@rothgar/exposing-services-using-ingress-with-on-prem-kubernetes-clusters-f413d87b6d34#.k8j8tatul
-
-https://github.com/kubernetes/minikube/issues/496
