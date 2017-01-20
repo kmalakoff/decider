@@ -19,7 +19,7 @@
         "containers": [
           {
             "name": "api-read",
-            "image": "decider/api-read:dist",
+            "image": "decider/api-read:pack",
             "ports": [
               {
                 "containerPort": 3000,

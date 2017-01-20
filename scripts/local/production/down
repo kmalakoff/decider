@@ -1,13 +1,10 @@
 #!/bin/bash
 
 env=production
+dir=`dirname $(greadlink -f ${BASH_SOURCE[0]} || readlink -f ${BASH_SOURCE[0]})`
 
 eval $(minikube docker-env)
-kubectl delete -f scripts/local/production/cluster/api-command-deployment.json
-kubectl delete -f scripts/local/production/cluster/api-command-service.json
-kubectl delete -f scripts/local/production/cluster/api-read-deployment.json
-kubectl delete -f scripts/local/production/cluster/api-read-service.json
-kubectl delete -f scripts/local/production/cluster/web-deployment.json
-kubectl delete -f scripts/local/production/cluster/web-service.json
-kubectl delete -f scripts/local/production/cluster/local-forwarding-service.json
+ls -d scripts/local/production/cluster/* | while read path; do
+  kubectl delete -f $path
+done
 kubectl delete namespace $env

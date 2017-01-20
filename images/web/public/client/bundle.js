@@ -60356,6 +60356,7 @@
 	      selectable = props.selectable,
 	      singleLine = props.singleLine,
 	      size = props.size,
+	      sortable = props.sortable,
 	      stackable = props.stackable,
 	      striped = props.striped,
 	      structured = props.structured,
@@ -60363,7 +60364,7 @@
 	      unstackable = props.unstackable;
 
 
-	  var classes = (0, _classnames2.default)('ui', color, size, (0, _lib.useKeyOrValueAndKey)(attached, 'attached'), (0, _lib.useKeyOrValueAndKey)(basic, 'basic'), (0, _lib.useKeyOnly)(celled, 'celled'), (0, _lib.useKeyOnly)(collapsing, 'collapsing'), (0, _lib.useKeyOrValueAndKey)(compact, 'compact'), (0, _lib.useKeyOnly)(definition, 'definition'), (0, _lib.useKeyOnly)(fixed, 'fixed'), (0, _lib.useKeyOnly)(inverted, 'inverted'), (0, _lib.useKeyOrValueAndKey)(padded, 'padded'), (0, _lib.useKeyOnly)(selectable, 'selectable'), (0, _lib.useKeyOnly)(singleLine, 'single line'), (0, _lib.useKeyOnly)(stackable, 'stackable'), (0, _lib.useKeyOnly)(striped, 'striped'), (0, _lib.useKeyOnly)(structured, 'structured'), (0, _lib.useKeyOnly)(unstackable, 'unstackable'), (0, _lib.useWidthProp)(columns, 'column'), className, 'table');
+	  var classes = (0, _classnames2.default)('ui', color, size, (0, _lib.useKeyOrValueAndKey)(attached, 'attached'), (0, _lib.useKeyOrValueAndKey)(basic, 'basic'), (0, _lib.useKeyOnly)(celled, 'celled'), (0, _lib.useKeyOnly)(collapsing, 'collapsing'), (0, _lib.useKeyOrValueAndKey)(compact, 'compact'), (0, _lib.useKeyOnly)(definition, 'definition'), (0, _lib.useKeyOnly)(fixed, 'fixed'), (0, _lib.useKeyOnly)(inverted, 'inverted'), (0, _lib.useKeyOrValueAndKey)(padded, 'padded'), (0, _lib.useKeyOnly)(selectable, 'selectable'), (0, _lib.useKeyOnly)(singleLine, 'single line'), (0, _lib.useKeyOnly)(sortable, 'sortable'), (0, _lib.useKeyOnly)(stackable, 'stackable'), (0, _lib.useKeyOnly)(striped, 'striped'), (0, _lib.useKeyOnly)(structured, 'structured'), (0, _lib.useKeyOnly)(unstackable, 'unstackable'), (0, _lib.useWidthProp)(columns, 'column'), className, 'table');
 	  var rest = (0, _lib.getUnhandledProps)(Table, props);
 	  var ElementType = (0, _lib.getElementType)(Table, props);
 
@@ -60398,7 +60399,7 @@
 	  );
 	}
 
-	Table.handledProps = ['as', 'attached', 'basic', 'celled', 'children', 'className', 'collapsing', 'color', 'columns', 'compact', 'definition', 'fixed', 'footerRow', 'headerRow', 'inverted', 'padded', 'renderBodyRow', 'selectable', 'singleLine', 'size', 'stackable', 'striped', 'structured', 'tableData', 'unstackable'];
+	Table.handledProps = ['as', 'attached', 'basic', 'celled', 'children', 'className', 'collapsing', 'color', 'columns', 'compact', 'definition', 'fixed', 'footerRow', 'headerRow', 'inverted', 'padded', 'renderBodyRow', 'selectable', 'singleLine', 'size', 'sortable', 'stackable', 'striped', 'structured', 'tableData', 'unstackable'];
 	Table._meta = {
 	  name: 'Table',
 	  type: _lib.META.TYPES.COLLECTION,
@@ -60482,6 +60483,9 @@
 
 	  /** A table can also be small or large. */
 	  size: _react.PropTypes.oneOf(Table._meta.props.size),
+
+	  /** A table may allow a user to sort contents by clicking on a table header. */
+	  sortable: _react.PropTypes.bool,
 
 	  /** A table can specify how it stacks table content responsively. */
 	  stackable: _react.PropTypes.bool,
@@ -60837,11 +60841,19 @@
 /* 1011 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+
+	var _extends2 = __webpack_require__(482);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
+	var _classnames = __webpack_require__(740);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
 
 	var _react = __webpack_require__(298);
 
@@ -60856,21 +60868,42 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function TableHeaderCell(props) {
-	  return _react2.default.createElement(_TableCell2.default, props);
+	  var as = props.as,
+	      className = props.className,
+	      sorted = props.sorted;
+
+	  var classes = (0, _classnames2.default)((0, _lib.useValueAndKey)(sorted, 'sorted'), className);
+	  var rest = (0, _lib.getUnhandledProps)(TableHeaderCell, props);
+	  return _react2.default.createElement(_TableCell2.default, (0, _extends3.default)({ as: as }, rest, { className: classes }));
 	}
 
-	TableHeaderCell.handledProps = ['as'];
+	TableHeaderCell.handledProps = ['as', 'className', 'sorted'];
 	TableHeaderCell._meta = {
 	  name: 'TableHeaderCell',
 	  type: _lib.META.TYPES.COLLECTION,
-	  parent: 'Table'
+	  parent: 'Table',
+	  props: {
+	    sorted: ['ascending', 'descending']
+	  }
 	};
+
+	process.env.NODE_ENV !== "production" ? TableHeaderCell.propTypes = {
+	  /** An element type to render as (string or function). */
+	  as: _lib.customPropTypes.as,
+
+	  /** Additional classes. */
+	  className: _react.PropTypes.string,
+
+	  /** A header cell can be sorted in ascending or descending order. */
+	  sorted: _react.PropTypes.oneOf(TableHeaderCell._meta.props.sorted)
+	} : void 0;
 
 	TableHeaderCell.defaultProps = {
 	  as: 'th'
 	};
 
 	exports.default = TableHeaderCell;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
 /* 1012 */
@@ -64669,10 +64702,10 @@
 	Popup.Header = _PopupHeader2.default;
 	exports.default = Popup;
 	process.env.NODE_ENV !== "production" ? Popup.propTypes = {
-	  /** Display the popup without the pointing arrow */
+	  /** Display the popup without the pointing arrow. */
 	  basic: _react.PropTypes.bool,
 
-	  /** You may pass a content as children of the Popup */
+	  /** You may pass a content as children of the Popup. */
 	  children: _react.PropTypes.node,
 
 	  /** Classes to add to the Popup className. */
@@ -64681,33 +64714,33 @@
 	  /** Simple text content for the popover */
 	  content: _react.PropTypes.node,
 
-	  /** A Flowing popup have no maximum width and continue to flow to fit its content */
+	  /** A flowing Popup has no maximum width and continues to flow to fit its content. */
 	  flowing: _react.PropTypes.bool,
 
-	  /** Takes up the entire width of its offset container */
+	  /** Takes up the entire width of its offset container. */
 	  // TODO: implement the Popup fluid layout
 	  // fluid: PropTypes.bool,
 
-	  /** Header displayed above the content in bold */
+	  /** Header displayed above the content in bold. */
 	  header: _react.PropTypes.string,
 
-	  /** Whether the popup should not close on hover */
+	  /** Whether the popup should not close on hover. */
 	  hoverable: _react.PropTypes.bool,
 
-	  /** Invert the colors of the popup */
+	  /** Invert the colors of the Popup. */
 	  inverted: _react.PropTypes.bool,
 
-	  /** The node where the popup should mount.. */
+	  /** Hide the Popup when scrolling the window. */
 	  hideOnScroll: _react.PropTypes.bool,
 
-	  /** Horizontal offset in pixels to be applied to the popup */
+	  /** Horizontal offset in pixels to be applied to the Popup. */
 	  offset: _react.PropTypes.number,
 
 	  /** Event triggering the popup */
 	  on: _react.PropTypes.oneOf(_meta.props.on),
 
 	  /**
-	   * Called when a close event happens
+	   * Called when a close event happens.
 	   *
 	   * @param {SyntheticEvent} event - React's original SyntheticEvent.
 	   * @param {object} data - All props.
@@ -64715,7 +64748,7 @@
 	  onClose: _react.PropTypes.func,
 
 	  /**
-	   * Called when the portal is mounted on the DOM
+	   * Called when the portal is mounted on the DOM.
 	   *
 	   * @param {null}
 	   * @param {object} data - All props.
@@ -64723,7 +64756,7 @@
 	  onMount: _react.PropTypes.func,
 
 	  /**
-	   * Called when an open event happens
+	   * Called when an open event happens.
 	   *
 	   * @param {SyntheticEvent} event - React's original SyntheticEvent.
 	   * @param {object} data - All props.
@@ -64731,7 +64764,7 @@
 	  onOpen: _react.PropTypes.func,
 
 	  /**
-	   * Called when the portal is unmounted from the DOM
+	   * Called when the portal is unmounted from the DOM.
 	   *
 	   * @param {null}
 	   * @param {object} data - All props.
@@ -64741,16 +64774,16 @@
 	  /** Positioning for the popover */
 	  positioning: _react.PropTypes.oneOf(_meta.props.positioning),
 
-	  /** Popup size */
+	  /** Popup size. */
 	  size: _react.PropTypes.oneOf(_meta.props.size),
 
-	  /** custom popup style */
+	  /** Custom Popup style. */
 	  style: _react.PropTypes.object,
 
 	  /** Element to be rendered in-place where the popup is defined. */
 	  trigger: _react.PropTypes.node,
 
-	  /** Popup width */
+	  /** Popup width. */
 	  wide: _react.PropTypes.oneOf(_meta.props.wide)
 	} : void 0;
 	Popup.handledProps = ['basic', 'children', 'className', 'content', 'flowing', 'header', 'hideOnScroll', 'hoverable', 'inverted', 'offset', 'on', 'onClose', 'onMount', 'onOpen', 'onUnmount', 'positioning', 'size', 'style', 'trigger', 'wide'];

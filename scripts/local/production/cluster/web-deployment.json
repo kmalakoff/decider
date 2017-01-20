@@ -19,7 +19,7 @@
         "containers": [
           {
             "name": "web",
-            "image": "decider/web:dist",
+            "image": "decider/web:pack",
             "ports": [
               {
                 "containerPort": 3000,

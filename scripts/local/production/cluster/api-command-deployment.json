@@ -19,7 +19,7 @@
         "containers": [
           {
             "name": "api-command",
-            "image": "decider/api-command:dist",
+            "image": "decider/api-command:pack",
             "ports": [
               {
                 "containerPort": 3000,
