@@ -49,9 +49,7 @@ export default class App extends Component {
   }
 
   onCompleteSomething = () => {
-    const {store} = this.context;
-
-    async function call() {
+    (async () => {
       try {
         let res = await fetch(`${process.env.API_URL}/commands/v1/voters/100/complete_something`, {
           method: 'POST',
@@ -60,10 +58,10 @@ export default class App extends Component {
         });
         const json = await res.json();
 
+        const {store} = this.context;
         await store.fetch();
       } catch (err) { alert(err); }
-    }
-    call();
+    })();
   }
 };
 

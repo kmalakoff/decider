@@ -5,6 +5,7 @@ module.exports = async function(es, aggregate, command, res) {
   try {
     await hydrateAggregate(es, aggregate);
     await executeCommand(es, aggregate, command);
+    console.log('Executed command:', command.constructor.name, JSON.stringify(command));
     res.status(202).json(command);
   }
   catch (err) {

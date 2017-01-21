@@ -14,6 +14,7 @@ module.exports = function({app, services, read_models}) {
           () => { return {id: e.voter_id, title: 'Semantic-Org/Semantic-UI', completed_count: 0}; }
         );
         voter.completed_count++;
+        console.log('Updated read model:', JSON.stringify(voter));
         break;
       }
     }
