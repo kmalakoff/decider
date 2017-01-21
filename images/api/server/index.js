@@ -13,8 +13,6 @@ async function initialize() {
   Object.values(require('require-directory')(module, './read_models')).forEach((m) => read_model_callbacks.push(m({app, services, read_models})));
   Object.values(require('require-directory')(module, './routes')).forEach((m) => m({app, services, read_models}));
 
-  const eventstore = require('eventstore-node');
-
   services.es.subscribeToAllFrom(null, true,
     function (s, es_event) {
       try {
@@ -24,7 +22,7 @@ async function initialize() {
     },
     function () { logger.info('Live processing started.'); },
     function (c, r, e) { logger.info('Subscription dropped.', c, r, e); },
-    new eventstore.UserCredentials('admin', 'changeit')
+    new (require('eventstore-node').UserCredentials)('admin', 'changeit')
   );
 
   const PORT = +process.env.PORT;

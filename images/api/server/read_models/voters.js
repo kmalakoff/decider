@@ -4,7 +4,7 @@ module.exports = function({app, services, read_models}) {
   function findOrCreate(id) {
     let index = read_models.voters.findIndex(v => v.id === id);
     if (~index) return read_models.voters[index];
-    let voter = {id, title: 'Semantic-Org/Semantic-UI', description: 'Updated 10 mins ago', completed_count: 0};
+    let voter = {id, title: 'Semantic-Org/Semantic-UI', completed_count: 0};
     read_models.voters.push(voter);
     return voter;
   }

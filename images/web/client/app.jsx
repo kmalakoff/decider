@@ -34,7 +34,7 @@ export default class App extends Component {
               <List.Icon name='github' size='large' verticalAlign='middle' />
               <List.Content>
                 <List.Header as='a'>{x.title}</List.Header>
-                <List.Description as='a'>{x.description}</List.Description>
+                <List.Description as='a'>{`Completed: ${x.completed_count}`}</List.Description>
               </List.Content>
             </List.Item>
           )}
