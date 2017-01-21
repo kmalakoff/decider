@@ -1,7 +1,5 @@
 FROM node:7.4.0-alpine
 
-RUN apk add --update bash && rm -rf /var/cache/apk/*
-
 RUN addgroup nodejs && adduser -s /bin/bash -D -G nodejs nodejs
 USER nodejs
 
