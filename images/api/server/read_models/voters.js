@@ -1,5 +1,4 @@
 const eventstore = require('eventstore-node');
-const uuid = require('uuid');
 
 module.exports = function({app, services, readModels}) {
   readModels.voters = readModels.voters || [];
@@ -7,7 +6,7 @@ module.exports = function({app, services, readModels}) {
   function findOrCreate(id) {
     let index = readModels.voters.findIndex(v => v.id === id);
     if (~index) return readModels.voters[index];
-    let voter = {id: uuid.v4(), title: 'Semantic-Org/Semantic-UI', description: 'Updated 10 mins ago', completed_count: 0};
+    let voter = {id, title: 'Semantic-Org/Semantic-UI', description: 'Updated 10 mins ago', completed_count: 0};
     readModels.voters.push(voter);
     return voter;
   }
