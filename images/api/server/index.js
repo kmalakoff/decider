@@ -9,8 +9,9 @@ async function initialize() {
   const services = require('require-directory')(module, './services');
   for (var key in services) services[key] = await services[key]();
   const read_models = {};
-  Object.values(require('require-directory')(module, './routes')).forEach((m) => m({app, services, read_models}));
-  Object.values(require('require-directory')(module, './read_models')).forEach((m) => m({app, services, read_models}));
+  Object.values(require('require-directory')(module, './query/read_models')).forEach((m) => m({app, services, read_models}));
+  Object.values(require('require-directory')(module, './query/routes')).forEach((m) => m({app, services, read_models}));
+  Object.values(require('require-directory')(module, './command/routes')).forEach((m) => m({app, services, read_models}));
 
   const PORT = +process.env.PORT;
   try { await app.listen(PORT); console.log(`Server started on port: ${PORT}`); }

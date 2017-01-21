@@ -1,5 +1,5 @@
 const EventEmitter = require('eventemitter3');
-const findOrCreate = require('../lib/find_or_create');
+const findOrCreate = require('./find_or_create');
 
 class EventStoreEventEmitter extends EventEmitter {
   constructor(es) {
