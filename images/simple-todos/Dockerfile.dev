@@ -1,0 +1,29 @@
+FROM node:4.7.2-alpine
+
+# install meteor
+# ENV GYP_DEFINES="linux_use_gold_flags=0"
+ENV BUILD_PACKAGES="python make gcc g++ git libuv bash curl tar"
+RUN apk add --update --no-cache ${BUILD_PACKAGES}
+# 	mkdir -p /root && \
+# 	ln -s /usr/bin/node /usr/bin/nodejs
+# RUN npm install -g npm@3
+# RUN npm install -g are-we-there-yet
+# RUN npm install -g node-gyp
+# RUN node-gyp install 4.4.7
+RUN curl https://install.meteor.com/ | sh
+EXPOSE 80
+
+RUN addgroup nodejs && adduser -s /bin/bash -D -G nodejs nodejs
+USER nodejs
+
+RUN mkdir -p /home/nodejs/app
+WORKDIR /home/nodejs/app
+# mounted and installed when run
+
+EXPOSE 3000
+EXPOSE 5858
+
+# download meteor
+# RUN meteor update
+
+CMD ["npm", "run", "develop"]

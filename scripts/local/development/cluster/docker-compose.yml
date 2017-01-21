@@ -8,10 +8,10 @@ services:
     ports:
       - "3000:3000"
       - "5858:5858"
-    env_file:
-      - ../environments/web.env
     volumes:
         - ../../../../images/web:/home/nodejs/app
+    env_file:
+      - ../environments/web.env
 
   api:
     image: decider/api:dev
@@ -21,12 +21,12 @@ services:
     ports:
       - "3001:3000"
       - "5859:5858"
-    env_file:
-      - ../environments/api.env
     volumes:
         - ../../../../images/api:/home/nodejs/app
     depends_on:
       - "eventstore"
+    env_file:
+      - ../environments/api.env
 
   eventstore:
     image: decider/eventstore:dev
@@ -36,3 +36,21 @@ services:
     ports:
       - "1113:1113"
       - "2113:2113"
+
+  simple-todos:
+    image: decider/simple-todos:dev
+    build:
+      context: ../../../../images/simple-todos
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3002:3000"
+    volumes:
+        - ../../../../images/simple-todos:/home/nodejs/app
+    links:
+      - mongo
+    environment:
+      - ROOT_URL=http://example.com
+      - MONGO_URL=mongodb://mongo:27017/meteor
+
+  mongo:
+    image: mvertes/alpine-mongo

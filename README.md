@@ -42,8 +42,8 @@ RUN apk add --update bash && rm -rf /var/cache/apk/*
 
 - Build and run:
 docker build -t decider/web:dev -f web/Dockerfile.dev web/
-docker run -v $(pwd)/images/api:/home/nodejs/app -it decider/api:dev bash
-docker run -v $(pwd)/images/web:/home/nodejs/app -it decider/web:pack-pack bash
+docker run -v $(pwd)/images/api:/home/node/app -it decider/api:dev bash
+docker run -v $(pwd)/images/web:/home/node/app -it decider/web:pack-pack bash
 
 Install minikube
 ===========================================================

@@ -10,7 +10,7 @@ ls -d images/* | while read path; do
   if [ -f $path/Dockerfile.$tag-dist ]; then
     file=${path##*/}
     docker build -t $namespace/$file:$tag-dist -f $path/Dockerfile.$tag-dist $path/
-    docker run -v $(pwd)/$path:/home/nodejs/app --env-file $dir/environments/$file.env -t $namespace/$file:$tag-dist
+    docker run -v $(pwd)/$path:/home/node/app --env-file $dir/environments/$file.env -t $namespace/$file:$tag-dist
   fi
 done
 

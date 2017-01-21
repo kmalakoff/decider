@@ -4297,7 +4297,7 @@
 	    // correct subclassing with @@species support
 	    var promise     = $Promise.resolve(1)
 	      , FakePromise = (promise.constructor = {})[__webpack_require__(26)('species')] = function(exec){ exec(empty, empty); };
-	    // unhandled rejections tracking support, NodeJS Promise without it fails @@species test
+	    // unhandled rejections tracking support, node Promise without it fails @@species test
 	    return (isNode || typeof PromiseRejectionEvent == 'function') && promise.then(empty) instanceof FakePromise;
 	  } catch(e){ /* empty */ }
 	}();
@@ -4389,7 +4389,7 @@
 	          console.error('Unhandled promise rejection', value);
 	        }
 	      });
-	      // Browsers should not trigger `rejectionHandled` event if it was handled here, NodeJS - should
+	      // Browsers should not trigger `rejectionHandled` event if it was handled here, node - should
 	      promise._h = isNode || isUnhandled(promise) ? 2 : 1;
 	    } promise._a = undefined;
 	    if(abrupt)throw abrupt.error;
