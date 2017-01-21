@@ -1,5 +1,3 @@
-const uniqueId = require('lodash.uniqueid');
-
 const wrap = fn => (...args) => fn(...args).catch((err) => args[1].status(500).send(err.message));
 
 const hydrateAggregate = require('../lib/hydrate_aggregate');
@@ -7,13 +5,9 @@ const executeCommand = require('../lib/execute_command');
 const CompleteSomething = require('../commands/complete_something');
 const Voter = require('../aggregates/voter');
 
-module.exports = function({app, services}) {
+module.exports = function({app, services, readModels}) {
   app.get('/api/things', wrap(async function (req, res) {
-    res.status(200).send([
-      {id: uniqueId('c'), title: 'Semantic-Org/Semantic-UI', description: 'Updated 10 mins ago'},
-      {id: uniqueId('c'), title: 'Semantic-Org/Semantic-UI', description: 'Updated 22 mins ago'},
-      {id: uniqueId('c'), title: 'Semantic-Org/Semantic-UI', description: 'Updated 34 mins ago'}
-    ]);
+    res.status(200).send(readModels.voters || []);
   }));
 
   app.post('/api/things', wrap(async function (req, res) {

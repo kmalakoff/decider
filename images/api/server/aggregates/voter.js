@@ -8,8 +8,8 @@ module.exports = class Voter {
 
   streamName(id) { return this.constructor.name + '-' + (id || this.id); }
 
-  hydrate(event) {
-    switch(event.type) {
+  hydrate(e) {
+    switch(e.type) {
       case 'something_completed': { this.completed_count++; break; }
     }
   }
