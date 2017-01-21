@@ -1,23 +1,18 @@
 const eventsEmitter = require('../lib/events_emitter');
-
-let voters = []
-
-function findOrCreate(id) {
-  let index = voters.findIndex(v => v.id === id);
-  if (~index) return voters[index];
-  let voter = {id, title: 'Semantic-Org/Semantic-UI', completed_count: 0};
-  voters.push(voter);
-  return voter;
-}
+const findOrCreate = require('../lib/find_or_create');
 
 module.exports = function({app, services, read_models}) {
-  read_models.voters = voters;
+  read_models.voters = read_models.voters || [];
 
   const emitter = eventsEmitter(services.es);
   emitter.on('event', (e) => {
     switch(e.type) {
       case 'something_completed': {
-        let voter = findOrCreate(e.voter_id);
+        let voter = findOrCreate(
+          read_models.voters,
+          x => { return x.id === e.voter_id },
+          () => { return {id: e.voter_id, title: 'Semantic-Org/Semantic-UI', completed_count: 0}; }
+        );
         voter.completed_count++;
         break;
       }
