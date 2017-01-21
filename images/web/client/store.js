@@ -13,7 +13,7 @@ export default class Store {
 
   async fetch() {
     try {
-      let res = await fetch(`${process.env.API_URL}/api/things`);
+      let res = await fetch(`${process.env.API_URL}/query/v1/voters`);
       this.things = await res.json();
     } catch (err) { alert(err); }
   }

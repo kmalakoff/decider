@@ -50,7 +50,7 @@ export default class App extends Component {
 
   onCompleteSomething = async () => {
     try {
-      let res = await fetch(`${process.env.API_URL}/api/things`, {
+      let res = await fetch(`${process.env.API_URL}/commands/v1/voters/100/complete_something`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({voter_id: 100})
