@@ -1,10 +1,8 @@
 const eventstore = require('eventstore-node');
 
-// TODO: handle configuration of event store
-const connection = eventstore.createConnection({}, {"hostname": "eventstore", "port": 1113});
-
-// TODO: handle multiple connection attempts
-async function connect() {
+module.exports = async function() {
+  // TODO: handle configuration of event store
+  const connection = eventstore.createConnection({}, {"hostname": "eventstore", "port": 1113});
   connection.connect();
 
   // TODO: handle failed connection
@@ -14,8 +12,4 @@ async function connect() {
       resolve(connection);
     });
   });
-}
-
-module.exports = async function() {
-  return await connect();
 }

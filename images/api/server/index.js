@@ -6,10 +6,9 @@ async function initialize() {
   app.use(require('cors')());
   app.use(require('body-parser').json());
 
-  const eventsTypes = require('require-directory')(module, './event_types');
   const services = require('require-directory')(module, './services');
   for (var key in services) services[key] = await services[key]();
-  Object.values(require('require-directory')(module, './routes')).forEach((m) => m({app, services, eventsTypes}));
+  Object.values(require('require-directory')(module, './routes')).forEach((m) => m({app, services}));
 
   const PORT = +process.env.PORT;
   try { await app.listen(PORT); console.log(`Server started on port: ${PORT}`); }

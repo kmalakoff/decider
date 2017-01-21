@@ -20,6 +20,7 @@
     "eventstore-node": "0.0.23",
     "express": "^4.14.0",
     "lodash.uniqueid": "^4.0.1",
-    "require-directory": "^2.1.1"
+    "require-directory": "^2.1.1",
+    "uuid": "^3.0.1"
   }
 }

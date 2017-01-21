@@ -25,6 +25,9 @@ export default class App extends Component {
         <button onClick={this.onReset}>
           Seconds passed: {store.timer}
         </button>
+        <button onClick={this.onCompleteSomething}>
+          CompleteSomething
+        </button>
         <List divided relaxed>
           {store.things.map((x) => 
             <List.Item key={x.id}>
@@ -43,6 +46,17 @@ export default class App extends Component {
   onReset = () => {
     const {store} = this.context;
     store.resetTimer();
+  }
+
+  onCompleteSomething = async () => {
+    try {
+      let res = await fetch(`${process.env.API_URL}/api/things`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({voter_id: 100})
+      });
+      const json = await res.json();
+    } catch (err) { alert(err); }
   }
 };
 

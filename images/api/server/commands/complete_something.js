@@ -1,5 +1,5 @@
 module.exports = class CompleteSomething {
   constructor(data) {
-    this.id = data.id;
+    this.voter_id = data.voter_id;
   }
 }

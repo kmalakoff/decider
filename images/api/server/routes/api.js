@@ -7,7 +7,7 @@ const executeCommand = require('../lib/execute_command');
 const CompleteSomething = require('../commands/complete_something');
 const Voter = require('../aggregates/voter');
 
-module.exports = function({app}) {
+module.exports = function({app, services}) {
   app.get('/api/things', wrap(async function (req, res) {
     res.status(200).send([
       {id: uniqueId('c'), title: 'Semantic-Org/Semantic-UI', description: 'Updated 10 mins ago'},
@@ -17,9 +17,11 @@ module.exports = function({app}) {
   }));
 
   app.post('/api/things', wrap(async function (req, res) {
-    const command = new CompleteSomething(req.body.id, req.body.voter_id);
+    const command = new CompleteSomething(req.body);
     try {
-      await executeCommand(command.id, new Voter(), command);
+      const aggregate = new Voter(req.body.voter_id);
+      await hydrateAggregate(services.es, aggregate);
+      await executeCommand(services.es, aggregate, command);
       res.status(202).json(command);
     }
     catch (err) {
