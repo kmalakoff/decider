@@ -5,9 +5,9 @@ const executeCommand = require('../lib/execute_command');
 const CompleteSomething = require('../commands/complete_something');
 const Voter = require('../aggregates/voter');
 
-module.exports = function({app, services, readModels}) {
+module.exports = function({app, services, read_models}) {
   app.get('/api/things', wrap(async function (req, res) {
-    res.status(200).send(readModels.voters || []);
+    res.status(200).send(read_models.voters || []);
   }));
 
   app.post('/api/things', wrap(async function (req, res) {
