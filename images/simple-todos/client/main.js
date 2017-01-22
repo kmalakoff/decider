@@ -5,6 +5,9 @@ import { render } from 'react-dom';
 import App from '../imports/ui/App.jsx';
 import '../imports/api/tasks.js';
 
+// hoist environment variables
+for (var key in Meteor.settings.public) { process.env[key] = Meteor.settings.public[key]; }
+
 Meteor.startup(() => {
   render(<App />, document.getElementById('render-target'));
 });

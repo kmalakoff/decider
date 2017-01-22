@@ -48,6 +48,8 @@ services:
         - ../../../../images/simple-todos:/home/nodejs/app
     depends_on:
       - mongo
+    env_file:
+      - ../environments/web.env
     environment:
       - PORT=3000
       - ROOT_URL=http://localhost:3002

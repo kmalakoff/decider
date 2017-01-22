@@ -55,6 +55,7 @@ react-meteor-data@0.2.9
 reactive-var@1.0.11
 reload@1.1.11
 retry@1.0.9
+rikonor:env@0.0.2
 routepolicy@1.0.12
 shell-server@0.2.1
 spacebars@1.0.13
