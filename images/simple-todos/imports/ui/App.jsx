@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {createContainer} from 'meteor/react-meteor-data'; 
 
-import {Voters} from '../api/voters.js';
+import Voters from '../api/voters.js';
 import Voter from './voter.jsx';
 
 class App extends Component {
@@ -32,8 +32,7 @@ class App extends Component {
 }
 
 export default createContainer(() => {
-  debugger;
-  const subscription = Meteor.subscribe('voters');
+  const subscription = Meteor.subscribe('voters.list');
   const loading = !subscription.ready();
   const voters = Voters.find().fetch();
   return {loading, voters};

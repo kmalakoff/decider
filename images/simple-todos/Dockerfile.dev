@@ -6,7 +6,6 @@ FROM node:4.7.1
 
 # install meteor
 RUN curl https://install.meteor.com/ | sh
-EXPOSE 80
 
 # Alpine is not supported
 # RUN addgroup nodejs && adduser -s /bin/bash -D -G nodejs nodejs
@@ -21,6 +20,6 @@ EXPOSE 3000
 EXPOSE 5858
 
 # download meteor
-RUN meteor update
+RUN meteor update --all-packages
 
 CMD ["npm", "run", "develop"]
