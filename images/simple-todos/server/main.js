@@ -8,6 +8,5 @@ CLIENT_ENV_VARS.forEach(key => exposeEnvVar(key));
 import Voters from '../imports/api/voters.js';
 
 Meteor.startup(function() {
-  debugger;
   Meteor.publish('voters.list', function() { return Voters.find(); });
 });

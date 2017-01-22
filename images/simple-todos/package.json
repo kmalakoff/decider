@@ -2,7 +2,7 @@
   "name": "simple-todos",
   "private": true,
   "scripts": {
-    "develop-install": "npm install && meteor npm install && meteor add rikonor:env && meteor update --all-packages && meteor debug",
+    "develop-install": "npm install && meteor npm install && meteor add react-meteor-data && meteor add rikonor:env && meteor update --all-packages && meteor debug",
     "develop": "meteor debug",
     "start": "meteor"
   },
