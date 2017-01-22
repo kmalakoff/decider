@@ -2,7 +2,7 @@
   "name": "simple-todos",
   "private": true,
   "scripts": {
-    "develop": "npm install --dev && node server/main.js",
+    "develop": "npm install --dev && meteor",
     "start": "meteor"
   },
   "dependencies": {

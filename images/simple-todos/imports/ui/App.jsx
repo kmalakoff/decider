@@ -24,8 +24,13 @@ class App extends Component {
         <ul>
           {this.renderTasks()}
         </ul>
+        <button onClick={this.onCreateTodo}>create todo</button>
       </div>
     );
+  }
+
+  onCreateTodo = () => {
+    Tasks.insert({voter_id: 10, text: 'created', createdAt: new Date()});
   }
 }
 
