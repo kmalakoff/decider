@@ -1,16 +1,16 @@
 import React, {Component} from 'react';
 import {createContainer} from 'meteor/react-meteor-data'; 
 
-import {Tasks} from '../api/tasks.js';
-import Task from './Task.jsx';
+import {Voters} from '../api/voters.js';
+import Voter from './voter.jsx';
 
 class App extends Component {
-  static propTypes = {tasks: React.PropTypes.array.isRequired};
+  static propTypes = {voters: React.PropTypes.array.isRequired};
  
-  renderTasks() {
-    let t = Tasks.find({}).fetch();
-    return this.props.tasks.map((task) => (
-      <Task key={task._id} task={task} />
+  renderVoters() {
+    let t = Voters.find({}).fetch();
+    return this.props.voters.map((voter) => (
+      <Voter key={voter._id} voter={voter} />
     ));
   }
  
@@ -22,7 +22,7 @@ class App extends Component {
         </header>
  
         <ul>
-          {this.renderTasks()}
+          {this.renderVoters()}
         </ul>
         <button onClick={this.onCreateTodo}>create todo</button>
       </div>
@@ -30,10 +30,10 @@ class App extends Component {
   }
 
   onCreateTodo = () => {
-    Tasks.insert({voter_id: 10, text: 'created', createdAt: new Date()});
+    Voters.insert({voter_id: 10, text: 'created', createdAt: new Date()});
   }
 }
 
 export default createContainer(() => {
-  return {tasks: Tasks.find({voter_id: 10}).fetch()};
+  return {voters: Voters.find({voter_id: 10}).fetch()};
 }, App);
