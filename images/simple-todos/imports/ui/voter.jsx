@@ -5,7 +5,7 @@ export default class Voter extends Component {
 
   render() {
     return (
-      <li>{this.props.voter.text}</li>
+      <li>{`${this.props.voter.text}-${this.props.voter.completed_count}`}</li>
     );
   }
 }

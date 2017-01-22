@@ -5,15 +5,11 @@ import {Voters} from '../api/voters.js';
 import Voter from './voter.jsx';
 
 class App extends Component {
-  static propTypes = {voters: React.PropTypes.array.isRequired};
- 
-  renderVoters() {
-    let t = Voters.find({}).fetch();
-    return this.props.voters.map((voter) => (
-      <Voter key={voter._id} voter={voter} />
-    ));
-  }
- 
+  static propTypes = {
+    loading: React.PropTypes.bool.isRequired,
+    voters: React.PropTypes.array.isRequired
+  };
+  
   render() {
     return (
       <div className="container">
@@ -22,18 +18,23 @@ class App extends Component {
         </header>
  
         <ul>
-          {this.renderVoters()}
+          {this.props.voters.map((voter) => <Voter key={voter._id} voter={voter} />)}
         </ul>
+        <div>{this.props.loading ? 'loading' : 'loaded'}</div>
         <button onClick={this.onCreateTodo}>create todo</button>
       </div>
     );
   }
 
   onCreateTodo = () => {
-    Voters.insert({voter_id: 10, text: 'created', createdAt: new Date()});
+    Voters.insert({created_at: new Date(), voter_id: 100, text: 'created', completed_count: 0});
   }
 }
 
 export default createContainer(() => {
-  return {voters: Voters.find({voter_id: 10}).fetch()};
+  debugger;
+  const subscription = Meteor.subscribe('voters');
+  const loading = !subscription.ready();
+  const voters = Voters.find().fetch();
+  return {loading, voters};
 }, App);

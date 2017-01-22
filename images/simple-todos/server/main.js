@@ -1,6 +1,6 @@
 import {Meteor} from 'meteor/meteor';
-import '../imports/api/voters.js';
 import _ from 'lodash';
+import '../imports/api/voters.js';
 
 // expose environemnt variables to client
 const CLIENT_ENV_VARS = ['NODE_ENV', 'API_URL'];

@@ -6,17 +6,18 @@ module.exports = function({app, services, read_models}) {
 
   const emitter = eventsEmitter(services.es);
   emitter.on('event', (e) => {
-    switch(e.type) {
-      case 'something_completed': {
-        let voter = findOrCreate(
-          read_models.voters,
-          x => { return x.id === e.voter_id },
-          () => { return {id: e.voter_id, title: 'Semantic-Org/Semantic-UI', completed_count: 0}; }
-        );
-        voter.completed_count++;
-        console.log('Updated read model:', JSON.stringify(voter));
-        break;
+    (async () => {
+      switch(e.type) {
+        case 'something_completed': {
+          let res = await services.mongo.collection('voters').updateMany({voter_id: e.voter_id}, {$inc: {completed_count: 1}});
+          if (res.result.nModified < 1) {
+            res = await services.mongo.collection('voters').insert({created_at: new Date(), voter_id: e.voter_id, text: 'Semantic-Org/Semantic-UI', completed_count: 1})
+          }
+
+          console.log('Updated read model:', JSON.stringify({voter_id: e.voter_id}));
+          break;
+        }
       }
-    }
+    })();
   });
 }
