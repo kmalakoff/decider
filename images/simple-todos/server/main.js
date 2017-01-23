@@ -5,8 +5,6 @@ import _ from 'lodash';
 const CLIENT_ENV_VARS = ['NODE_ENV', 'API_URL'];
 CLIENT_ENV_VARS.forEach(key => exposeEnvVar(key));
 
-import Voters from '../imports/api/voters.js';
+import Voter from '../imports/api/voters';
 
-Meteor.startup(function() {
-  Meteor.publish('voters.list', function() { return Voters.find(); });
-});
+Meteor.startup(function() {});

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { render } from 'react-dom';
- 
+
+import '../imports/startup/accounts_config.js';
 import App from '../imports/ui/app.jsx';
 import '../imports/api/voters.js';
 
