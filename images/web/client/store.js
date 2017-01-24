@@ -9,9 +9,15 @@ export default class Store {
     this.fetch();
 
     this.socket = io(process.env.SERVICEBUS_URL);
-    this.socket.on('error', function (err) { console.log('socket error', err); });
-    this.socket.on('connect', function () { console.log('socket connected'); });
-    this.socket.on('change', function (data) { console.log('change', data); });
+    this.socket.on('error', (err) => { console.log('socket error', err); });
+    this.socket.on('connect', () => {
+      console.log('socket connected');
+      this.socket.emit('subscribe', 'votes');
+    });
+    this.socket.on('publish', (data) => {
+      console.log('published', data);
+      this.fetch();
+    });
   }
 
   resetTimer() { this.timer = 0; }

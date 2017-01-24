@@ -14,6 +14,7 @@ module.exports = function({app, services, read_models}) {
             res = await services.mongo.collection('voters').insert({created_at: new Date(), voter_id: e.voter_id, text: 'Semantic-Org/Semantic-UI', completed_count: 1})
           }
 
+          services.servicebus.send('publish', {channel: 'votes', query: {voter_id: e.voter_id}});
           console.log('Updated read model:', JSON.stringify({voter_id: e.voter_id}));
           break;
         }

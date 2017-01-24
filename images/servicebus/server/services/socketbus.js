@@ -1,24 +1,40 @@
-const http = require('http');
 const socketIO = require('socket.io');
 
-module.exports = async function({app, services}) {
-  const server = http.Server(app);
-  const io = socketIO(server);
+class Socketbus {
+  constructor(io, bus) {
+    this.io = io;
+    this.bus = bus;
 
-  io.on('connection', function (socket) {
-    socket.on('change', function (data) {
-      console.log('receiving change (socket)', data);
-      io.emit('change', data);
+    this.subscriptions = {};
+
+    io.on('connection', (socket) => {
+      socket.on('subscribe', (channel, query) => {
+        if (!channel) return console.log(channel, missing);
+
+        let subscriptions = this.subscriptions[channel]
+        if (!subscriptions) subscriptions = this.subscriptions[channel] = {};
+        let socket_subscriptions = subscriptions[socket.id];
+        if (!socket_subscriptions) socket_subscriptions = subscriptions[socket.id] = {socket, query: query || {}};
+        console.log('Added subscription:', socket.id, channel, query);
+      });
+
+      socket.on('disconnect', () => {
+        for (var channel in this.subscriptions) delete this.subscriptions[channel][socket.id];
+        console.log('Removed subscriptions:', socket.id);
+      });
     });
-  });
 
-  const bus = services.servicebus;
-  bus.listen('change', function(data) {
-    console.log('receiving change (bus)', data);
-    io.emit('change', data);
-  });
-
-  const PORT = +process.env.PORT;
-  try { await server.listen(PORT); console.log(`Server started on port: ${PORT}`); }
-  catch(err) { return console.error(`Server failed to start on port: ${PORT}`, err); }
+    bus.listen('publish', (data) => {
+      console.log('receiving change (bus)', data);
+      let subscriptions = this.subscriptions[data.channel];
+      if (subscriptions) {
+        for (var socket_id in subscriptions) {
+          console.log('publishing', socket_id, data.channel, data.query);
+          subscriptions[socket_id].socket.emit('publish', data.channel, data.query);
+        }
+      }
+    });
+  }
 }
+
+module.exports = async function({server, services}) { return new Socketbus(socketIO(server), services.servicebus); }

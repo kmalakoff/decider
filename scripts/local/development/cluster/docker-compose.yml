@@ -52,21 +52,6 @@ services:
     env_file:
       - ../environments/servicebus.env
 
-  # simple-todos:
-  #   image: decider/simple-todos:dev
-  #   build:
-  #     context: ../../../../images/simple-todos
-  #     dockerfile: Dockerfile.dev
-  #   ports:
-  #     - "3002:3000"
-  #     - "5860:5858"
-  #   volumes:
-  #       - ../../../../images/simple-todos:/home/nodejs/app
-  #   depends_on:
-  #     - mongo
-  #   env_file:
-  #     - ../environments/simple-todos.env
-
   mongo:
     image: mvertes/alpine-mongo
     ports:

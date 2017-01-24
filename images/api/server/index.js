@@ -16,12 +16,6 @@ async function initialize() {
   const PORT = +process.env.PORT;
   try { await app.listen(PORT); console.log(`Server started on port: ${PORT}`); }
   catch(err) { return console.error(`Server failed to start on port: ${PORT}`, err); }
-
-  const bus = services.servicebus;
-  setInterval(function () {
-    console.log('sending change');
-    bus.send('change', {data: 'hello'});
-  }, 1000);
 }
 
 initialize();
