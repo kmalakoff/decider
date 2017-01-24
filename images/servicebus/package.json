@@ -1,28 +1,30 @@
 {
-  "name": "socketcluster-sample",
-  "description": "A sample SocketCluster app",
+  "name": "api",
   "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
     "develop-install": "npm install --dev && nodemon --harmony-async-await --debug=0.0.0.0:5858 --watch server server/index.js",
-    "develop": "node --harmony-async-await server server/index.js --inspect-workers",
+    "develop": "nodemon --harmony-async-await --debug=0.0.0.0:5858 --watch server server/index.js",
     "start": "node --harmony-async-await server/index.js",
     "dist": "exit 0",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies": {
-    "connect": "^3.5.0",
-    "express": "^4.14.0",
-    "minimist": "^1.2.0",
-    "morgan": "1.7.0",
-    "sc-cluster-broker-client": "1.x.x",
-    "sc-framework-health-check": "1.x.x",
-    "sc-hot-reboot": "1.x.x",
-    "serve-static": "^1.11.2",
-    "socketcluster": "^5.2.1",
-    "socketcluster-client": "^5.2.4"
-  },
+  "license": "MIT",
   "devDependencies": {
-    "nodemon": "^1.11.0",
-    "sc-rabbitmq": "^0.1.2"
+    "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cors": "^2.8.1",
+    "eventemitter3": "^2.0.2",
+    "eventstore-node": "0.0.23",
+    "express": "^4.14.0",
+    "mongodb": "^2.2.21",
+    "require-directory": "^2.1.1",
+    "serve-static": "^1.11.2",
+    "servicebus": "^2.0.7",
+    "socket.io": "^1.7.2",
+    "uuid": "^3.0.1"
   }
 }
