@@ -1,33 +1,19 @@
 const path = require('path');
-const app = require('express')();
-const serveStatic = require('serve-static');
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
+const express = require('express');
 
-app.use(serveStatic(path.resolve(__dirname, '..', 'public')));
+async function initialize() {
+  const app = express();
+  app.use(require('cors')());
 
-io.on('connection', function (socket) {
-  socket.on('chat message', function (msg) {
-    console.log('message: ' + msg);
-    io.emit('chat message', msg);
-  });
-});
+  const serveStatic = require('serve-static');
+  app.use(serveStatic(path.resolve(__dirname, '..', 'public')));
 
-http.listen(3000, function () {
-  console.log('listening on *:3000');
-});
+  const services = require('require-directory')(module, './services');
+  for (var key in services) services[key] = await services[key]({app, services});
 
-const bus = require('servicebus').bus({ url: process.env.RABBITMQ_URL || 'amqp://rabbitmq' });
-bus.on('error', function(err) {
-  console.log('error', err);
-});
+  // const PORT = +process.env.PORT;
+  // try { await app.listen(PORT); console.log(`Server started on port: ${PORT}`); }
+  // catch(err) { return console.error(`Server failed to start on port: ${PORT}`, err); }
+}
 
-bus.listen('my.event', function(event) {
-  console.log('my.event', event);
-  io.emit('chat message', event);
-});
-
-setInterval(function () {
-  console.log('sending my.event');
-  bus.send('my.event', { my: 'event' });
-}, 1000);
+initialize();

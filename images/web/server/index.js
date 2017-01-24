@@ -7,7 +7,7 @@ async function initialize() {
   app.use(require('body-parser').json());
 
   const services = require('require-directory')(module, './services');
-  for (var key in services) services[key] = await services[key]();
+  for (var key in services) services[key] = await services[key]({app, services});
   Object.values(require('require-directory')(module, './routes')).forEach((m) => m({app, services}));
 
   const PORT = +process.env.PORT;
