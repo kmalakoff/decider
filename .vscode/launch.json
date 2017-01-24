@@ -26,15 +26,15 @@
       "remoteRoot": "/home/node/app/"
     },
     {
-      "name": "Docker Debug (Meteor)",
+      "name": "Docker Debug (ServiceBus)",
       "type": "node",
       "request": "attach",
       "port": 5860,
       "address": "127.0.0.1",
       "restart": false,
       "sourceMaps": false,
-      "outDir": "${workspaceRoot}/images/simple-todos/.meteor/local/build/programs/server",
-      "localRoot": "${workspaceRoot}/images/simple-todos/",
+      "outDir": null,
+      "localRoot": "${workspaceRoot}/images/servicebus/",
       "remoteRoot": "/home/node/app/"
     }
   ]

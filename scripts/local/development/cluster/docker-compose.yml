@@ -37,22 +37,42 @@ services:
       - "1113:1113"
       - "2113:2113"
 
-  simple-todos:
-    image: decider/simple-todos:dev
+  servicebus:
+    image: decider/servicebus:dev
     build:
-      context: ../../../../images/simple-todos
+      context: ../../../../images/servicebus
       dockerfile: Dockerfile.dev
     ports:
-      - "3002:3000"
-      - "5860:5858"
+      - "3002:8000"
+      - "5860:58580"
     volumes:
-        - ../../../../images/simple-todos:/home/nodejs/app
+        - ../../../../images/servicebus:/home/nodejs/app
     depends_on:
-      - mongo
+      - "rabbitmq"
     env_file:
-      - ../environments/simple-todos.env
+      - ../environments/servicebus.env
+
+  # simple-todos:
+  #   image: decider/simple-todos:dev
+  #   build:
+  #     context: ../../../../images/simple-todos
+  #     dockerfile: Dockerfile.dev
+  #   ports:
+  #     - "3002:3000"
+  #     - "5860:5858"
+  #   volumes:
+  #       - ../../../../images/simple-todos:/home/nodejs/app
+  #   depends_on:
+  #     - mongo
+  #   env_file:
+  #     - ../environments/simple-todos.env
 
   mongo:
     image: mvertes/alpine-mongo
     ports:
       - "27017:27017"
+
+  rabbitmq:
+    image: rabbitmq:latest
+    ports:
+      - "5672:5672"
