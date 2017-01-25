@@ -29619,7 +29619,7 @@
 	              case 0:
 	                _context.prev = 0;
 	                _context.next = 3;
-	                return fetch(process.env.API_URL + '/commands/v1/voters/100/complete_something', {
+	                return fetch(process.env.API_SERVICE_URL + '/commands/v1/voters/100/complete_something', {
 	                  method: 'POST',
 	                  headers: { 'Content-Type': 'application/json' },
 	                  body: JSON.stringify({ voter_id: 100 })
@@ -71415,7 +71415,7 @@
 	    }, 1000);
 	    this.fetch();
 
-	    this.primus = new Primus(process.env.SERVICEBUS_URL);
+	    this.primus = new Primus(process.env.SERVICEBUS_SERVICE_URL);
 	    this.primus.on('error', function (err) {
 	      console.log('primus error', err);
 	    });
@@ -71452,7 +71452,7 @@
 	            case 0:
 	              _context.prev = 0;
 	              _context.next = 3;
-	              return fetch(process.env.API_URL + '/query/v1/voters');
+	              return fetch(process.env.API_SERVICE_URL + '/query/v1/voters');
 
 	            case 3:
 	              res = _context.sent;

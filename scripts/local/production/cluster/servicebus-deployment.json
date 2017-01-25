@@ -34,10 +34,6 @@
               {
                 "name": "PORT",
                 "value": "3000"
-              },
-              {
-                "name": "RABBITMQ_URL",
-                "value": "amqp://local-production-rabbitmq.decider.com"
               }
             ],
             "resources": {}

@@ -8,7 +8,7 @@ export default class Store {
     setInterval(() => { this.timer += 1; }, 1000);
     this.fetch();
 
-    this.primus = new Primus(process.env.SERVICEBUS_URL);
+    this.primus = new Primus(process.env.SERVICEBUS_SERVICE_URL);
     this.primus.on('error', (err) => { console.log('primus error', err); });
     this.primus.on('open', () => { this.primus.write({action: 'subscribe', channel: 'votes'}); });
     this.primus.on('data', (data) => { this.fetch(); });
@@ -18,7 +18,7 @@ export default class Store {
 
   async fetch() {
     try {
-      let res = await fetch(`${process.env.API_URL}/query/v1/voters`);
+      let res = await fetch(`${process.env.API_SERVICE_URL}/query/v1/voters`);
       this.things = await res.json();
     } catch (err) { alert(err); }
   }

@@ -36,16 +36,8 @@
                 "value": "3000"
               },
               {
-                "name": "EVENTSTORE_URL",
-                "value": "http://local-production-eventstore.decider.com"
-              },
-              {
-                "name": "MONGO_URL",
-                "value": "mongodb://local-production-mongodb.decider.com/decider"
-              },
-              {
-                "name": "RABBITMQ_URL",
-                "value": "amqp://local-production-rabbitmq.decider.com"
+                "name": "MONGODB_SERVICE_DB",
+                "value": "decider"
               }
             ],
             "resources": {}

@@ -3,3 +3,4 @@
 minikube start --memory=8192 --vm-driver=xhyve
 minikube addons enable ingress
 echo "eval \$(minikube docker-env)"
+echo "eval \$(minikube docker-env --unset)"

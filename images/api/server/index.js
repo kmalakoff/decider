@@ -1,4 +1,5 @@
 const path = require('path');
+require('./initialize');
 const express = require('express');
 
 async function initialize() {
