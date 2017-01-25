@@ -1,4 +1,5 @@
 const sleep = require('sleep-promise');
+const RETRY_SLEEP = 1000;
 
 async function createServiceBus() {
   return new Promise((resolve, reject) => {
@@ -20,8 +21,9 @@ module.exports = async function() {
         if (servicebus) return resolve(servicebus);
       }
       catch (err) {
-        console.log(err);
-        sleep(500);
+        if (err.code != 'ECONNREFUSED') return reject(err);
+        console.log('Service bus not ready. Retrying connection', err.code, process.env.RABBITMQ_SERVICE_URL);
+        sleep(RETRY_SLEEP);
       }
     }
   });
