@@ -24,6 +24,20 @@ echo "$(minikube ip) local-production-api.decider.com" | sudo tee -a /etc/hosts
 echo "$(docker-machine ip) local-development-web.decider.com" | sudo tee -a /etc/hosts
 echo "$(docker-machine ip) local-development-api.decider.com" | sudo tee -a /etc/hosts
 
+127.0.0.1 local-development-web.decider.com
+127.0.0.1 local-development-api.decider.com
+127.0.0.1 local-development-servicebus.decider.com
+127.0.0.1 local-development-rabbtmq.decider.com
+127.0.0.1 local-development-mongodb.decider.com
+127.0.0.1 local-development-eventstore.decider.com
+
+192.168.64.22 local-production-web.decider.com
+192.168.64.22 local-production-api.decider.com
+192.168.64.22 local-production-servicebus.decider.com
+192.168.64.22 local-production-rabbtmq.decider.com
+192.168.64.22 local-production-mongodb.decider.com
+192.168.64.22 local-production-eventstore.decider.com
+
 Run
 ===========================================================
 eval $(minikube docker-env)
