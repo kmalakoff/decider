@@ -44,5 +44,6 @@ class Socketbus {
 
 module.exports = async function({server, services}) { 
   const primus = new Primus(server, {transformer: 'uws'});
+  // const primus = new Primus(server, {transformer: 'engine.io'});
   return new Socketbus(primus, services.servicebus);
 }

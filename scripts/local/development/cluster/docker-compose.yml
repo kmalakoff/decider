@@ -25,17 +25,10 @@ services:
         - ../../../../images/api:/home/nodejs/app
     depends_on:
       - "eventstore"
+      - "mongodb"
+      - "rabbitmq"
     env_file:
       - ../environments/api.env
-
-  eventstore:
-    image: decider/eventstore:dev
-    build:
-      context: ../../../../images/eventstore
-      dockerfile: Dockerfile.dev
-    ports:
-      - "1113:1113"
-      - "2113:2113"
 
   servicebus:
     image: decider/servicebus:dev
@@ -52,12 +45,27 @@ services:
     env_file:
       - ../environments/servicebus.env
 
-  mongo:
-    image: mvertes/alpine-mongo
+  mongodb:
+    image: decider/mongodb:dev
+    build:
+      context: ../../../../images/mongodb
+      dockerfile: Dockerfile.dev
     ports:
       - "27017:27017"
 
   rabbitmq:
-    image: rabbitmq:latest
+    image: decider/rabbitmq:dev
+    build:
+      context: ../../../../images/rabbitmq
+      dockerfile: Dockerfile.dev
     ports:
       - "5672:5672"
+
+  eventstore:
+    image: decider/eventstore:dev
+    build:
+      context: ../../../../images/eventstore
+      dockerfile: Dockerfile.dev
+    ports:
+      - "1113:1113"
+      - "2113:2113"
