@@ -1,18 +1,5 @@
 version: "2"
 services:
-  web:
-    image: decider/web:dev
-    build:
-      context: ../../../../images/web
-      dockerfile: Dockerfile.dev
-    ports:
-      - "3000:3000"
-      - "5858:5858"
-    volumes:
-        - ../../../../images/web:/home/nodejs/app
-    env_file:
-      - ../environments/web.env
-
   api:
     image: decider/api:dev
     build:
@@ -26,24 +13,17 @@ services:
     depends_on:
       - "eventstore"
       - "mongodb"
-      - "rabbitmq"
     env_file:
       - ../environments/api.env
 
-  servicebus:
-    image: decider/servicebus:dev
+  eventstore:
+    image: decider/eventstore:dev
     build:
-      context: ../../../../images/servicebus
+      context: ../../../../images/eventstore
       dockerfile: Dockerfile.dev
     ports:
-      - "3002:3000"
-      - "5860:5858"
-    volumes:
-        - ../../../../images/servicebus:/home/nodejs/app
-    depends_on:
-      - "rabbitmq"
-    env_file:
-      - ../environments/servicebus.env
+      - "1113:1113"
+      - "2113:2113"
 
   mongodb:
     image: decider/mongodb:dev
@@ -61,11 +41,46 @@ services:
     ports:
       - "5672:5672"
 
-  eventstore:
-    image: decider/eventstore:dev
+  readmodel:
+    image: decider/readmodel:dev
     build:
-      context: ../../../../images/eventstore
+      context: ../../../../images/readmodel
       dockerfile: Dockerfile.dev
     ports:
-      - "1113:1113"
-      - "2113:2113"
+      - "5861:5858"
+    volumes:
+        - ../../../../images/readmodel:/home/nodejs/app
+    depends_on:
+      - "eventstore"
+      - "mongodb"
+      - "rabbitmq"
+    env_file:
+      - ../environments/readmodel.env
+
+  servicebus:
+    image: decider/servicebus:dev
+    build:
+      context: ../../../../images/servicebus
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3002:3000"
+      - "5860:5858"
+    volumes:
+        - ../../../../images/servicebus:/home/nodejs/app
+    depends_on:
+      - "rabbitmq"
+    env_file:
+      - ../environments/servicebus.env
+
+  web:
+    image: decider/web:dev
+    build:
+      context: ../../../../images/web
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+      - "5858:5858"
+    volumes:
+        - ../../../../images/web:/home/nodejs/app
+    env_file:
+      - ../environments/web.env

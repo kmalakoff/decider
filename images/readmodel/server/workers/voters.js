@@ -1,9 +1,7 @@
-const eventsEmitter = require('../../lib/events_emitter');
-const findOrCreate = require('../../lib/find_or_create');
+const eventsEmitter = require('../lib/events_emitter');
+const findOrCreate = require('../lib/find_or_create');
 
-module.exports = function({app, services, read_models}) {
-  read_models.voters = read_models.voters || [];
-
+module.exports = function({app, services}) {
   const emitter = eventsEmitter(services.es);
   emitter.on('event', (e) => {
     (async () => {

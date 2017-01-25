@@ -1,0 +1,29 @@
+{
+  "kind": "Service",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "readmodel",
+    "namespace": "production",
+    "creationTimestamp": null,
+    "labels": {
+      "service": "readmodel"
+    }
+  },
+  "spec": {
+    "type": "NodePort",
+    "ports": [
+      {
+        "name": "3000",
+        "protocol": "TCP",
+        "port": 3000,
+        "targetPort": 3000
+      }
+    ],
+    "selector": {
+      "service": "readmodel"
+    }
+  },
+  "status": {
+    "loadBalancer": {}
+  }
+}
