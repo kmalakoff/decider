@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {observer} from 'mobx-react';
 import {Menu} from 'semantic-ui-react';
-import {Link} from 'react-router';
+import {Link, IndexLink} from 'react-router';
 
 @observer
 export default class App extends Component {
@@ -16,7 +16,7 @@ export default class App extends Component {
     return (
       <div>
         <Menu>
-          <Link className="item" to="/" activeClassName="active">Dashboard</Link>
+          <IndexLink className="item" to="/" activeClassName="active">Dashboard</IndexLink>
           <Link className="item" to="/votes" activeClassName="active">Votes</Link>
           <Link className="item" to="/proposals" activeClassName="active">Proposals</Link>
           <Link className="item" to="/users" activeClassName="active">Users</Link>
