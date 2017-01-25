@@ -6,9 +6,6 @@ async function initialize() {
   const app = express();
   app.use(require('cors')());
 
-  const serveStatic = require('serve-static');
-  app.use(serveStatic(path.resolve(__dirname, '..', 'public')));
-
   const server = http.Server(app);
   const services = require('require-directory')(module, './services');
   for (var key in services) services[key] = await services[key]({app, server, services});

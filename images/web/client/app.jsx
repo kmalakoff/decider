@@ -30,7 +30,7 @@ export default class App extends Component {
         </button>
         <List divided relaxed>
           {store.things.map((x) => 
-            <List.Item key={x.id}>
+            <List.Item key={x._id}>
               <List.Icon name='github' size='large' verticalAlign='middle' />
               <List.Content>
                 <List.Header as='a'>{x.title}</List.Header>
@@ -57,9 +57,6 @@ export default class App extends Component {
           body: JSON.stringify({voter_id: 100})
         });
         const json = await res.json();
-
-        const {store} = this.context;
-        await store.fetch();
       } catch (err) { alert(err); }
     })();
   }

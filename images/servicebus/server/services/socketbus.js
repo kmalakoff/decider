@@ -1,40 +1,48 @@
-const socketIO = require('socket.io');
+const Primus = require('primus');
 
 class Socketbus {
-  constructor(io, bus) {
-    this.io = io;
-    this.bus = bus;
+  constructor(primus, servicebus) {
+    this.primus = primus;
+    this.servicebus = servicebus;
 
     this.subscriptions = {};
 
-    io.on('connection', (socket) => {
-      socket.on('subscribe', (channel, query) => {
-        if (!channel) return console.log(channel, missing);
-
-        let subscriptions = this.subscriptions[channel]
-        if (!subscriptions) subscriptions = this.subscriptions[channel] = {};
-        let socket_subscriptions = subscriptions[socket.id];
-        if (!socket_subscriptions) socket_subscriptions = subscriptions[socket.id] = {socket, query: query || {}};
-        console.log('Added subscription:', socket.id, channel, query);
-      });
-
-      socket.on('disconnect', () => {
-        for (var channel in this.subscriptions) delete this.subscriptions[channel][socket.id];
-        console.log('Removed subscriptions:', socket.id);
-      });
+    primus.on('connection', (spark) => {
+      spark.on('data', (data) => { this.addSubscription(spark, data); });
+      spark.on('disconnect', () => { this.removeSubscriptions(spark); });
     });
 
-    bus.listen('publish', (data) => {
-      console.log('receiving change (bus)', data);
-      let subscriptions = this.subscriptions[data.channel];
-      if (subscriptions) {
-        for (var socket_id in subscriptions) {
-          console.log('publishing', socket_id, data.channel, data.query);
-          subscriptions[socket_id].socket.emit('publish', data.channel, data.query);
-        }
+    servicebus.listen('publish', (data) => { this.broadcastMessage(data); });
+  }
+
+  addSubscription(spark, {channel, query}) {
+    if (!channel) return console.log(spark.id, 'channel missing for subscribe');
+
+    let subscriptions = this.subscriptions[channel]
+    if (!subscriptions) subscriptions = this.subscriptions[channel] = {};
+    let spark_subscriptions = subscriptions[spark.id];
+    if (!spark_subscriptions) spark_subscriptions = subscriptions[spark.id] = {spark, query: query || {}};
+    console.log('Added subscriptions:', spark.id, channel, query);
+  }
+
+  removeSubscriptions(spark) {
+    for (var channel in this.subscriptions) delete this.subscriptions[channel][spark.id];
+    console.log('Removed subscriptions:', spark.id);
+  }
+
+  broadcastMessage(data) {
+    console.log('receiving change (servicebus)', data);
+    let subscriptions = this.subscriptions[data.channel];
+    if (subscriptions) {
+      for (var spark_id in subscriptions) {
+        console.log('publishing', spark_id, data.channel, data.query);
+        subscriptions[spark_id].spark.write(data);
       }
-    });
+    }
   }
 }
 
-module.exports = async function({server, services}) { return new Socketbus(socketIO(server), services.servicebus); }
+module.exports = async function({server, services}) { 
+  const primus = new Primus(server, {transformer: 'uws'});
+  return new Socketbus(primus, services.servicebus);
+}

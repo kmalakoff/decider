@@ -8,16 +8,10 @@ export default class Store {
     setInterval(() => { this.timer += 1; }, 1000);
     this.fetch();
 
-    this.socket = io(process.env.SERVICEBUS_URL);
-    this.socket.on('error', (err) => { console.log('socket error', err); });
-    this.socket.on('connect', () => {
-      console.log('socket connected');
-      this.socket.emit('subscribe', 'votes');
-    });
-    this.socket.on('publish', (data) => {
-      console.log('published', data);
-      this.fetch();
-    });
+    this.primus = new Primus(process.env.SERVICEBUS_URL);
+    this.primus.on('error', (err) => { console.log('primus error', err); });
+    this.primus.on('open', () => { this.primus.write({action: 'subscribe', channel: 'votes'}); });
+    this.primus.on('data', (data) => { this.fetch(); });
   }
 
   resetTimer() { this.timer = 0; }

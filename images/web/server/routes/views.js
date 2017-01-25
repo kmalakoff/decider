@@ -8,7 +8,7 @@ const CLIENT_HTML = `<html>
   <body>
     <div id="root"></div>
     <script>(function() { window.__ENV__=${JSON.stringify(_.pick(process.env, CLIENT_ENV_VARS))}; })();</script>
-    <script src="${process.env.SERVICEBUS_URL}/socket.io/socket.io.js"></script>
+    <script src="${process.env.SERVICEBUS_URL}/primus/primus.js"></script>
     <script src="/client/bundle.js"></script>
   </body>
 </html>`;
