@@ -1,11 +1,9 @@
 import {observable} from 'mobx';
 
 export default class Store {
-  @observable timer = 0;
   @observable things = [];
 
   constructor() {
-    setInterval(() => { this.timer += 1; }, 1000);
     this.fetch();
 
     this.primus = new Primus(process.env.SERVICEBUS_SERVICE_URL);
@@ -13,8 +11,6 @@ export default class Store {
     this.primus.on('open', () => { this.primus.write({action: 'subscribe', channel: 'votes'}); });
     this.primus.on('data', (data) => { this.fetch(); });
   }
-
-  resetTimer() { this.timer = 0; }
 
   async fetch() {
     try {

@@ -3,12 +3,13 @@ import 'babel-polyfill'; // async / await
 // hoist environment variables
 for (var key in window.__ENV__) { process.env[key] = window.__ENV__[key]; }
 
+import 'semantic-ui-css/semantic.css';
 import React from 'react';
 import {render} from 'react-dom';
 import {AppContainer} from 'react-hot-loader';
 
 import Provider from './provider';
-import App from './app';
+import Routes from './routes';
 import Store from './store';
 
 const store = new Store();
@@ -16,23 +17,26 @@ const store = new Store();
 render(
   <AppContainer>
     <Provider store={store}>
-      <App/>
+      <Routes/>
     </Provider>
   </AppContainer>,
   document.getElementById('root')
 );
 
 if (module.hot) {
-  module.hot.accept('./app', () => {
-    const NextApp = require('./app').default;
+  module.hot.accept('./components/app', () => {
+    const NextRoutes = require('./routes').default;
 
     render(
       <AppContainer>
         <Provider store={store}>
-          <NextApp/>
+          <NextRoutes/>
         </Provider>
       </AppContainer>,
       document.getElementById('root')
     );
   });
 }
+
+// import DevTools from 'mobx-react-devtools';
+// <DevTools />

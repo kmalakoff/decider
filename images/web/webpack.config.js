@@ -5,7 +5,7 @@ const _ = require('lodash');
 const APP_PATH = path.resolve(__dirname, 'client');
 
 module.exports = {
-  entry: path.join(APP_PATH, 'index.' + process.env.NODE_ENV + '.jsx'),
+  entry: path.join(APP_PATH, 'index.' + process.env.NODE_ENV + '.js'),
   output: {
     path: path.join(__dirname, 'public', 'client'),
     filename: 'bundle.js'

@@ -1,30 +1,16 @@
 import React, {Component} from 'react';
 import {observer} from 'mobx-react';
-import {Menu, List} from 'semantic-ui-react';
-
-import 'semantic-ui-css/semantic.css';
+import {List} from 'semantic-ui-react';
 
 @observer
-export default class App extends Component {
+export default class Votes extends Component {
   static contextTypes = {store: React.PropTypes.object.isRequired}
-
-  state = {}
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   render() {
     const {store} = this.context;
 
     return (
       <div>
-        <Menu>
-          <Menu.Item header>Our Company</Menu.Item>
-          <Menu.Item name='aboutUs' active={this.state.activeItem === 'aboutUs'} onClick={this.handleItemClick} />
-          <Menu.Item name='jobs' active={this.state.activeItem === 'jobs'} onClick={this.handleItemClick} />
-          <Menu.Item name='locations' active={this.state.activeItem === 'locations'} onClick={this.handleItemClick} />
-        </Menu>
-        <button onClick={this.onReset}>
-          Seconds passed: {store.timer}
-        </button>
         <button onClick={this.onCompleteSomething}>
           CompleteSomething
         </button>
@@ -43,11 +29,6 @@ export default class App extends Component {
     );
   }
 
-  onReset = () => {
-    const {store} = this.context;
-    store.resetTimer();
-  }
-
   onCompleteSomething = () => {
     (async () => {
       try {
@@ -61,6 +42,3 @@ export default class App extends Component {
     })();
   }
 };
-
-// import DevTools from 'mobx-react-devtools';
-// <DevTools />
