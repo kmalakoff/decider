@@ -36,12 +36,12 @@
                 "value": "3000"
               },
               {
-                "name": "READ_API_URL",
+                "name": "API_URL",
                 "value": "http://local-production-api.decider.com"
               },
               {
-                "name": "API_URL",
-                "value": "http://local-production-api.decider.com"
+                "name": "SERVICEBUS_URL",
+                "value": "http://local-production-servicebus.decider.com"
               }
             ],
             "resources": {}

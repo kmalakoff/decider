@@ -1,0 +1,45 @@
+{
+  "apiVersion": "extensions/v1beta1",
+  "kind": "Deployment",
+  "metadata": {
+    "creationTimestamp": null,
+    "namespace": "production",
+    "name": "eventstore"
+  },
+  "spec": {
+    "replicas": 1,
+    "strategy": {
+    },
+    "template": {
+      "metadata": {
+        "creationTimestamp": null,
+        "labels": {
+          "service": "eventstore"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "image": "decider/eventstore:pack",
+            "name": "eventstore",
+            "ports": [
+              {
+                "containerPort": 1113,
+                "protocol": "TCP"
+              },
+              {
+                "containerPort": 2113,
+                "protocol": "TCP"
+              }
+            ],
+            "resources": {
+            }
+          }
+        ],
+        "restartPolicy": "Always"
+      }
+    }
+  },
+  "status": {
+  }
+}

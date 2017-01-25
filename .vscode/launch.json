@@ -11,7 +11,7 @@
       "sourceMaps": false,
       "outDir": null,
       "localRoot": "${workspaceRoot}/images/web/",
-      "remoteRoot": "/home/node/app/"
+      "remoteRoot": "home/nodejs/app/"
     },
     {
       "name": "Docker Debug (API)",
@@ -23,7 +23,7 @@
       "sourceMaps": false,
       "outDir": null,
       "localRoot": "${workspaceRoot}/images/api/",
-      "remoteRoot": "/home/node/app/"
+      "remoteRoot": "home/nodejs/app/"
     },
     {
       "name": "Docker Debug (ServiceBus)",
@@ -35,7 +35,7 @@
       "sourceMaps": false,
       "outDir": null,
       "localRoot": "${workspaceRoot}/images/servicebus/",
-      "remoteRoot": "/home/node/app/"
+      "remoteRoot": "home/nodejs/app/"
     }
   ]
 }

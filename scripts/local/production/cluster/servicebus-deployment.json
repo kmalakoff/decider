@@ -2,7 +2,7 @@
   "kind": "Deployment",
   "apiVersion": "extensions/v1beta1",
   "metadata": {
-    "name": "api",
+    "name": "servicebus",
     "namespace": "production",
     "creationTimestamp": null
   },
@@ -12,14 +12,14 @@
       "metadata": {
         "creationTimestamp": null,
         "labels": {
-          "service": "api"
+          "service": "servicebus"
         }
       },
       "spec": {
         "containers": [
           {
-            "name": "api",
-            "image": "decider/api:pack",
+            "name": "servicebus",
+            "image": "decider/servicebus:pack",
             "ports": [
               {
                 "containerPort": 3000,
@@ -34,14 +34,6 @@
               {
                 "name": "PORT",
                 "value": "3000"
-              },
-              {
-                "name": "EVENTSTORE_URL",
-                "value": "http://local-production-eventstore.decider.com"
-              },
-              {
-                "name": "MONGO_URL",
-                "value": "mongodb://local-production-mongodb.decider.com/decider"
               },
               {
                 "name": "RABBITMQ_URL",

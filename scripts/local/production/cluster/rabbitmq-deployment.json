@@ -1,0 +1,41 @@
+{
+  "apiVersion": "extensions/v1beta1",
+  "kind": "Deployment",
+  "metadata": {
+    "creationTimestamp": null,
+    "namespace": "production",
+    "name": "rabbitmq"
+  },
+  "spec": {
+    "replicas": 1,
+    "strategy": {
+    },
+    "template": {
+      "metadata": {
+        "creationTimestamp": null,
+        "labels": {
+          "service": "rabbitmq"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "image": "decider/rabbitmq:pack",
+            "name": "rabbitmq",
+            "ports": [
+              {
+                "containerPort": 5672,
+                "protocol": "TCP"
+              }
+            ],
+            "resources": {
+            }
+          }
+        ],
+        "restartPolicy": "Always"
+      }
+    }
+  },
+  "status": {
+  }
+}

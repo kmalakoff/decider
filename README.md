@@ -8,7 +8,6 @@ brew install docker-machine-driver-xhyve
 sudo chown root:wheel $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
 sudo chmod u+s $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
 docker-machine create --driver xhyve --xhyve-memory-size=8192 --xhyve-experimental-nfs-share default
-docker-machine create --driver xhyve --xhyve-memory-size=8192 --xhyve-experimental-nfs-share default
 
 brew install kubectl
 https://github.com/kubernetes/minikube/releases
@@ -55,9 +54,9 @@ By hand - Development
 RUN apk add --update bash && rm -rf /var/cache/apk/*
 
 - Build and run:
-docker build -t decider/web:dev -f web/Dockerfile.dev web/
-docker run -v $(pwd)/images/api:/home/node/app -it decider/api:dev bash
-docker run -v $(pwd)/images/web:/home/node/app -it decider/web:pack-pack bash
+docker build -f images/web/Dockerfile.dev -t decider/web:dev images/web/
+docker run -v $(pwd)/images/web:/home/nodejs/app -it decider/web:dev bash
+docker run -v $(pwd)/images/web:/home/nodejs/app -it decider/web:pack-pack bash
 
 Install minikube
 ===========================================================

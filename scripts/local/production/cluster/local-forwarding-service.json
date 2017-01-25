@@ -8,6 +8,19 @@
   "spec": {
     "rules": [
       {
+        "host": "local-production-api.decider.com",
+        "http": {
+          "paths": [
+            {
+              "backend": {
+                "serviceName": "api",
+                "servicePort": 3000
+              }
+            }
+          ]
+        }
+      },
+      {
         "host": "local-production-web.decider.com",
         "http": {
           "paths": [
@@ -21,13 +34,52 @@
         }
       },
       {
-        "host": "local-production-api.decider.com",
+        "host": "local-production-servicebus.decider.com",
         "http": {
           "paths": [
             {
               "backend": {
-                "serviceName": "api",
+                "serviceName": "servicebus",
                 "servicePort": 3000
+              }
+            }
+          ]
+        }
+      },
+      {
+        "host": "local-production-eventstore.decider.com",
+        "http": {
+          "paths": [
+            {
+              "backend": {
+                "serviceName": "eventstore",
+                "servicePort": 1113
+              }
+            }
+          ]
+        }
+      },
+      {
+        "host": "local-production-mongodb.decider.com",
+        "http": {
+          "paths": [
+            {
+              "backend": {
+                "serviceName": "mongodb",
+                "servicePort": 27017
+              }
+            }
+          ]
+        }
+      },
+      {
+        "host": "local-production-rabbitmq.decider.com",
+        "http": {
+          "paths": [
+            {
+              "backend": {
+                "serviceName": "rabbitmq",
+                "servicePort": 5672
               }
             }
           ]

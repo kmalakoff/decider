@@ -5,7 +5,7 @@ namespace=decider
 
 dir=`dirname $(greadlink -f ${BASH_SOURCE[0]} || readlink -f ${BASH_SOURCE[0]})`; cd $(dirname $(dirname $(dirname $dir)))
 
-eval $(docker-machine env)
+eval $(minikube docker-env --unset)
 ls -d images/* | while read path; do
   if [ -f $path/Dockerfile.$tag-dist ]; then
     file=${path##*/}
@@ -19,4 +19,4 @@ ls -d images/* | while read path; do
   docker rmi $(docker images -q $namespace/$file:$tag) -f || true
 done
 
-docker rmi $(docker images --quiet --filter "dangling=true") || true
+docker rmi $(docker images --quiet --filter "dangling=true") -f || true
