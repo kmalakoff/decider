@@ -38,6 +38,10 @@
               {
                 "name": "API_SERVICE_URL",
                 "value": "http://local-production-api.decider.com"
+              },
+              {
+                "name": "SERVICEBUS_SERVICE_URL",
+                "value": "http://local-production-servicebus.decider.com"
               }
             ],
             "resources": {}
