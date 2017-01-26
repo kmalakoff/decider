@@ -2,11 +2,11 @@
   "kind": "Service",
   "apiVersion": "v1",
   "metadata": {
-    "name": "readmodel",
+    "name": "workers",
     "namespace": "production",
     "creationTimestamp": null,
     "labels": {
-      "service": "readmodel"
+      "service": "workers"
     }
   },
   "spec": {
@@ -20,7 +20,7 @@
       }
     ],
     "selector": {
-      "service": "readmodel"
+      "service": "workers"
     }
   },
   "status": {

@@ -41,21 +41,21 @@ services:
     ports:
       - "5672:5672"
 
-  readmodel:
-    image: decider/readmodel:dev
+  workers:
+    image: decider/workers:dev
     build:
-      context: ../../../../images/readmodel
+      context: ../../../../images/workers
       dockerfile: Dockerfile.dev
     ports:
       - "5861:5858"
     volumes:
-        - ../../../../images/readmodel:/home/nodejs/app
+        - ../../../../images/workers:/home/nodejs/app
     depends_on:
       - "eventstore"
       - "mongodb"
       - "rabbitmq"
     env_file:
-      - ../environments/readmodel.env
+      - ../environments/workers.env
 
   servicebus:
     image: decider/servicebus:dev
