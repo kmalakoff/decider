@@ -3,7 +3,7 @@ import {observable} from 'mobx';
 export default class Store {
   @observable proposals = [];
   @observable users = [];
-  @observable voters = [];
+  @observable votes = [];
 
   constructor() {
     this.fetch();
@@ -30,8 +30,8 @@ export default class Store {
     } catch (err) { alert(err); }
 
     try {
-      let res = await fetch(`${process.env.API_SERVICE_URL}/query/v1/voters`);
-      this.voters = await res.json();
+      let res = await fetch(`${process.env.API_SERVICE_URL}/query/v1/votes`);
+      this.votes = await res.json();
     } catch (err) { alert(err); }
   }
 }

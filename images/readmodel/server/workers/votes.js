@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const eventsEmitter = require('../lib/events_emitter');
 const findOrCreate = require('../lib/find_or_create');
 
@@ -6,13 +7,13 @@ module.exports = function({app, services}) {
   emitter.on('event', (e) => {
     (async () => {
       switch(e.type) {
-        case 'something_completed': {
-          let res = await services.mongo.collection('voters').updateMany({voter_id: e.voter_id}, {$inc: {completed_count: 1}});
+        case 'vote_created': {
+          let res = await services.mongo.collection('votes').updateMany(_.pick(e, 'id', 'name', 'proposal_id'), {$inc: {completed_count: 1}});
           if (res.result.nModified < 1) {
-            res = await services.mongo.collection('voters').insert({created_at: new Date(), voter_id: e.voter_id, text: 'Semantic-Org/Semantic-UI', completed_count: 1})
+            res = await services.mongo.collection('votes').insert(_.defaults({created_at: new Date()}, _.pick(e, 'id', 'name', 'proposal_id')));
           }
 
-          services.servicebus.send('publish', {channel: 'votes', query: {voter_id: e.voter_id}});
+          services.servicebus.send('publish', {channel: 'votes', query: {id: e.id}});
           console.log('Updated read model:', JSON.stringify(e));
           break;
         }

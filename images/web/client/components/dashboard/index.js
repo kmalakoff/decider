@@ -9,7 +9,7 @@ export default class Dashboard extends Component {
     const {store} = this.context;
 
     return (
-      <h1>Landing</h1>
+      <h1>Dashboard</h1>
     );
   }
 };
