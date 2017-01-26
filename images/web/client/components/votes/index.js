@@ -15,7 +15,7 @@ export default class Votes extends Component {
           CompleteSomething
         </button>
         <List divided relaxed>
-          {store.things.map((x) => 
+          {store.voters.map((x) => 
             <List.Item key={x._id}>
               <List.Icon name='github' size='large' verticalAlign='middle' />
               <List.Content>

@@ -1,21 +1,30 @@
 import {observable} from 'mobx';
 
 export default class Store {
-  @observable things = [];
+  @observable voters = [];
+  @observable users = [];
 
   constructor() {
     this.fetch();
 
     this.primus = new Primus(process.env.SERVICEBUS_SERVICE_URL);
     this.primus.on('error', (err) => { console.log('primus error', err); });
-    this.primus.on('open', () => { this.primus.write({action: 'subscribe', channel: 'votes'}); });
+    this.primus.on('open', () => {
+      this.primus.write({action: 'subscribe', channel: 'votes'});
+      this.primus.write({action: 'subscribe', channel: 'users'});
+    });
     this.primus.on('data', (data) => { this.fetch(); });
   }
 
   async fetch() {
     try {
       let res = await fetch(`${process.env.API_SERVICE_URL}/query/v1/voters`);
-      this.things = await res.json();
+      this.voters = await res.json();
+    } catch (err) { alert(err); }
+
+    try {
+      let res = await fetch(`${process.env.API_SERVICE_URL}/query/v1/users`);
+      this.users = await res.json();
     } catch (err) { alert(err); }
   }
 }
