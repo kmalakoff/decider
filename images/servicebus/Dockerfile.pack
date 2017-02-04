@@ -1,4 +1,4 @@
-FROM node:7.4.0-alpine
+FROM node:7.5.0-alpine
 
 # for uws
 RUN apk add --update libc6-compat && rm -rf /var/cache/apk/*
