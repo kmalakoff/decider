@@ -8,9 +8,9 @@ const PACKAGES = [
   '../packages/api-domain-administrating',
   '../packages/api-domain-registering',
   '../packages/api-domain-voting',
-  '../packages/decider-reducers',
-  '../packages/decider-servicebus',
-  '../packages/decider-web',
+  '../packages/api-read',
+  '../packages/servicebus',
+  '../packages/web',
 ];
 const PACKAGE_MODULES = [path.join('server', 'routes'), path.join('server', 'workers')];
 
