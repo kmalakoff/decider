@@ -10,11 +10,11 @@ module.exports = {
     path: path.join(__dirname, 'public', 'client'),
     filename: 'bundle.js'
   },
-  resolve: {extensions: ['', '.js', '.jsx']},
+  resolve: {extensions: ['.js', '.jsx']},
   module: {
-    loaders: [
-      {test: /\.jsx?$/, loaders: ['babel'], include: APP_PATH},
-      {test: /\.css$/, loaders: ['style', 'css']},
+    rules: [
+      {test: /\.jsx?$/, loaders: ['babel-loader'], include: APP_PATH},
+      {test: /\.css$/, loaders: ['style-loader', 'css-loader']},
       {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url-loader?minetype=application/font-woff'},
       {test: /\.(ttf|eot|svg|jpg|png)$/, loader: 'file-loader'}
     ]
