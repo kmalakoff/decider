@@ -1,8 +1,8 @@
 const _ = require('lodash');
 const uuid = require('uuid');
-const CreateVote = require('../commands/votes/create_vote');
+const CreateProposal = require('../commands/create_proposal');
 
-module.exports = class Vote {
+module.exports = class Proposal {
   constructor(id) {
     this.id = id;
     this.name = '';
@@ -12,13 +12,13 @@ module.exports = class Vote {
 
   hydrate(e) {
     switch(e.type) {
-      case 'vote_created': { _.extend(this, _.pick(e, 'id', 'name', 'proposal_id')); break; }
+      case 'proposal_created': { _.extend(this, _.pick(e, 'id', 'name')); break; }
     }
   }
 
   execute(command) {
-    if (command instanceof CreateVote) {
-      let events = [_.defaults({type: 'vote_created', id: uuid.v4()}, _.pick(command, 'id', 'name', 'proposal_id'))];
+    if (command instanceof CreateProposal) {
+      let events = [_.defaults({type: 'proposal_created', id: uuid.v4()}, _.pick(command, 'id', 'name'))];
       this.hydrate(events[0]); // TODO: is this correct?
       return events;
     }

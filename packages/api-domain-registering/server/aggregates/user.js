@@ -1,6 +1,6 @@
 const _ = require('lodash');
 const uuid = require('uuid');
-const CreateUser = require('../commands/users/create_user');
+const CreateUser = require('../commands/create_user');
 
 module.exports = class User {
   constructor(id) {

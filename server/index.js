@@ -5,17 +5,14 @@ const http = require('http');
 const requireDirectory = require('require-directory');
 
 const PACKAGES = [
-  '../packages/decider-api/server/query',
-  '../packages/decider-api/server/command',
-  '../packages/decider-reducers/server',
-  '../packages/decider-servicebus/server',
-  '../packages/decider-web/server',
+  '../packages/api-domain-administrating',
+  '../packages/api-domain-registering',
+  '../packages/api-domain-voting',
+  '../packages/decider-reducers',
+  '../packages/decider-servicebus',
+  '../packages/decider-web',
 ];
-
-const PACKAGE_LOCATIONS = [
-  'routes',
-  'workers'
-];
+const PACKAGE_MODULES = [path.join('server', 'routes'), path.join('server', 'workers')];
 
 async function initialize() {
   const app = express();
@@ -30,8 +27,8 @@ async function initialize() {
 
   // initialize modules
   PACKAGES.forEach((package) => {
-    PACKAGE_LOCATIONS.forEach((location) => {
-      try { Object.values(requireDirectory(module, path.join(package, location))).forEach((m) => m(options)); }
+    PACKAGE_MODULES.forEach((mod) => {
+      try { Object.values(requireDirectory(module, path.join(package, mod), {visit: (m) => m(options)})); }
       catch (err) { if (err.code !== 'ENOENT') throw err; }
     });
   })
