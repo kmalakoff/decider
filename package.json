@@ -23,9 +23,12 @@
     "require-directory": "^2.1.1",
     "servicebus": "^2.0.7",
     "sleep-promise": "^2.0.0",
-    "decider-api": "1.0.0",
-    "decider-web": "1.0.0",
-    "decider-workers": "1.0.0",
-    "decider-servicebus": "1.0.0"
+    "api-domain-administrating": "1.0.0",
+    "api-domain-registering": "1.0.0",
+    "api-domain-voting": "1.0.0",
+    "api-read": "1.0.0",
+    "servicebus": "1.0.0",
+    "shared-lib": "1.0.0",
+    "web": "1.0.0"
   }
 }
