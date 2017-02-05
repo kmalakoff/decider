@@ -18,26 +18,17 @@ services:
       - ../environments/decider.env
 
   eventstore:
-    image: decider/eventstore:dev
-    build:
-      context: ../../../../images/eventstore
-      dockerfile: Dockerfile.dev
+    image: eventstore/eventstore:latest
     ports:
       - "1113:1113"
       - "2113:2113"
 
   mongodb:
-    image: decider/mongodb:dev
-    build:
-      context: ../../../../images/mongodb
-      dockerfile: Dockerfile.dev
+    image: mvertes/alpine-mongo:latest
     ports:
       - "27017:27017"
 
   rabbitmq:
-    image: decider/rabbitmq:dev
-    build:
-      context: ../../../../images/rabbitmq
-      dockerfile: Dockerfile.dev
+    image: rabbitmq:latest
     ports:
       - "5672:5672"
