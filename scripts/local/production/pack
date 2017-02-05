@@ -10,7 +10,7 @@ path=$(pwd)
 if [ -f $path/Dockerfile.$tag-dist ]; then
   file=${path##*/}
   docker build -t $namespace/$file:$tag-dist -f $path/Dockerfile.$tag-dist $path/
-  docker run -v $(pwd)/$path:/home/nodejs/app -e "NODE_ENV=production" -t $namespace/$file:$tag-dist
+  docker run -v $(pwd):/home/nodejs/app -e "NODE_ENV=production" -t $namespace/$file:$tag-dist
 fi
 
 eval $(minikube docker-env)

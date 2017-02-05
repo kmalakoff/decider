@@ -1,5 +1,9 @@
 FROM node:7.5.0-alpine
 
+# git for lerna
+# libc6-compat for uws
+RUN apk add --update git libc6-compat && rm -rf /var/cache/apk/*
+
 RUN addgroup nodejs && adduser -s /bin/bash -D -G nodejs nodejs
 USER nodejs
 
