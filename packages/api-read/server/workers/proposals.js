@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const eventsEmitter = require('shared-lib/events_emitter');
-const findOrCreate = require('shared-lib/find_or_create');
+const eventsEmitter = require('@decider/shared-lib/events_emitter');
+const findOrCreate = require('@decider/shared-lib/find_or_create');
 
 module.exports = function({app, services}) {
   const emitter = eventsEmitter(services.es);

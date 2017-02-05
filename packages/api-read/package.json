@@ -1,5 +1,5 @@
 {
-  "name": "decider-workers",
+  "name": "@decider/api-read",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,6 +12,6 @@
   "license": "MIT",
   "dependencies": {
     "lodash": "^4.17.4",
-    "shared-lib": "1.0.0"
+    "@decider/shared-lib": "1.0.0"
   }
 }

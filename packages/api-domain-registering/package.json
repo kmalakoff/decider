@@ -1,5 +1,5 @@
 {
-  "name": "decider-api",
+  "name": "@decider/api-domain-registering",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,6 +13,6 @@
   "dependencies": {
     "lodash": "^4.17.4",
     "uuid": "^3.0.1",
-    "shared-lib": "1.0.0"
+    "@decider/shared-lib": "1.0.0"
   }
 }
