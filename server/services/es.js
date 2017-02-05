@@ -3,7 +3,9 @@ const urlParse = require('url').parse;
 const eventstore = require('eventstore-node');
 
 module.exports = async function() {
-  const connection = eventstore.createConnection({}, _.pick(urlParse(process.env.EVENTSTORE_SERVICE_URL), ['hostname', 'port']));
+  let endpoint = _.pick(urlParse(process.env.EVENTSTORE_SERVICE_URL), ['hostname', 'port'])
+  endpoint.host = endpoint.hostname; delete endpoint.hostname;
+  const connection = eventstore.createConnection({}, endpoint);
 
   // TODO: handle failed connections and reonnections
   return new Promise((resolve, reject) => {

@@ -1,5 +1,5 @@
 {
-  "name": "web",
+  "name": "decider-web",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -39,10 +39,5 @@
     "webpack-hot-middleware": "^2.15.0"
   },
   "dependencies": {
-    "body-parser": "^1.15.2",
-    "cors": "^2.8.1",
-    "express": "^4.14.0",
-    "lodash": "^4.17.2",
-    "require-directory": "^2.1.1"
   }
 }

@@ -1,12 +1,10 @@
 {
-  "name": "workers",
+  "name": "decider",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "develop": "nodemon --harmony-async-await --debug=0.0.0.0:5858 --watch server server/index.js",
     "start": "node --harmony-async-await server/index.js",
-    "dist": "exit 0",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "license": "MIT",
@@ -14,12 +12,20 @@
     "nodemon": "^1.11.0"
   },
   "dependencies": {
+    "body-parser": "^1.15.2",
+    "cors": "^2.8.1",
     "eventemitter3": "^2.0.2",
-    "eventstore-node": "0.0.23",
+    "eventstore-node": "0.0.26",
+    "express": "^4.14.0",
+    "lerna": "2.0.0-beta.36",
     "lodash": "^4.17.4",
     "mongodb": "^2.2.21",
     "require-directory": "^2.1.1",
     "servicebus": "^2.0.7",
-    "sleep-promise": "^2.0.0"
+    "sleep-promise": "^2.0.0",
+    "decider-api": "1.0.0",
+    "decider-web": "1.0.0",
+    "decider-workers": "1.0.0",
+    "decider-servicebus": "1.0.0"
   }
 }

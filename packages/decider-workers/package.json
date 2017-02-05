@@ -1,5 +1,5 @@
 {
-  "name": "api",
+  "name": "decider-workers",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,17 +10,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "license": "MIT",
-  "devDependencies": {
-    "nodemon": "^1.11.0"
-  },
   "dependencies": {
-    "cors": "^2.8.1",
-    "engine.io": "^2.0.0",
-    "express": "^4.14.0",
-    "primus": "^6.0.8",
-    "require-directory": "^2.1.1",
-    "servicebus": "^2.0.7",
-    "sleep-promise": "^2.0.0",
-    "uws": "^0.12.0"
+    "eventemitter3": "^2.0.2",
+    "servicebus": "^2.0.7"
   }
 }
