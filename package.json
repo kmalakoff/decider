@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "develop": "nodemon --harmony-async-await --debug=0.0.0.0:5858 --watch server server/index.js",
+    "develop": "nodemon --harmony-async-await --debug=0.0.0.0:5858 --watch server --watch packages server/index.js",
     "start": "node --harmony-async-await server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
