@@ -12,13 +12,6 @@
     "nodemon": "^1.11.0"
   },
   "dependencies": {
-    "@decider/api-domain-administrating": "1.0.0",
-    "@decider/api-domain-registering": "1.0.0",
-    "@decider/api-domain-voting": "1.0.0",
-    "@decider/api-read": "1.0.0",
-    "@decider/servicebus": "1.0.0",
-    "@decider/shared-lib": "1.0.0",
-    "@decider/web": "1.0.0",
     "body-parser": "^1.15.2",
     "cors": "^2.8.1",
     "eventemitter3": "^2.0.2",
