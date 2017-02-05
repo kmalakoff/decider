@@ -1,5 +1,5 @@
 {
-  "name": "decider-workers",
+  "name": "shared-lib",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,7 +11,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "lodash": "^4.17.4",
-    "shared-lib": "1.0.0"
+    "uuid": "^3.0.1",
+    "eventemitter3": "^2.0.2"
   }
 }

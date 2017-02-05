@@ -1,6 +1,6 @@
 const wrap = fn => (...args) => fn(...args).catch((err) => args[1].status(500).send(err.message));
 
-const executeAndRespond = require('../lib/execute_and_respond');
+const executeAndRespond = require('shared-lib/command/execute_and_respond');
 const CreateProposal = require('../commands/create_proposal');
 const Proposal = require('../aggregates/proposal');
 
