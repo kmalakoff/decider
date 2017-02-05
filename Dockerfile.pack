@@ -1,5 +1,9 @@
 FROM node:7.5.0-alpine
 
+# git for lerna
+# libc6-compat for uws
+RUN apk add --update git libc6-compat && rm -rf /var/cache/apk/*
+
 RUN addgroup nodejs && adduser -s /bin/bash -D -G nodejs nodejs
 USER nodejs
 
@@ -9,6 +13,12 @@ WORKDIR /home/nodejs/app
 COPY package.json /home/nodejs/app/package.json
 RUN npm install --dev --production
 COPY ./server /home/nodejs/app/server
+
+COPY lerna.json /home/nodejs/app/lerna.json
+COPY ./packages /home/nodejs/app/packages
+USER root
+RUN node_modules/.bin/lerna bootstrap --hoist --ignore web
+USER nodejs
 
 EXPOSE 3000
 

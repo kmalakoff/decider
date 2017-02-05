@@ -2,7 +2,7 @@
   "kind": "Deployment",
   "apiVersion": "extensions/v1beta1",
   "metadata": {
-    "name": "web",
+    "name": "decider",
     "namespace": "production",
     "creationTimestamp": null
   },
@@ -12,14 +12,14 @@
       "metadata": {
         "creationTimestamp": null,
         "labels": {
-          "service": "web"
+          "service": "decider"
         }
       },
       "spec": {
         "containers": [
           {
-            "name": "web",
-            "image": "decider/web:pack",
+            "name": "decider",
+            "image": "decider/decider:pack",
             "ports": [
               {
                 "containerPort": 3000,
@@ -34,6 +34,10 @@
               {
                 "name": "PORT",
                 "value": "3000"
+              },
+              {
+                "name": "MONGODB_SERVICE_DB",
+                "value": "decider"
               },
               {
                 "name": "API_SERVICE_URL",

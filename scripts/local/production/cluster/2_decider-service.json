@@ -2,11 +2,11 @@
   "kind": "Service",
   "apiVersion": "v1",
   "metadata": {
-    "name": "servicebus",
+    "name": "decider",
     "namespace": "production",
     "creationTimestamp": null,
     "labels": {
-      "service": "servicebus"
+      "service": "decider"
     }
   },
   "spec": {
@@ -20,7 +20,7 @@
       }
     ],
     "selector": {
-      "service": "servicebus"
+      "service": "decider"
     }
   },
   "status": {

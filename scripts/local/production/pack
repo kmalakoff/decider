@@ -6,18 +6,16 @@ namespace=decider
 dir=`dirname $(greadlink -f ${BASH_SOURCE[0]} || readlink -f ${BASH_SOURCE[0]})`; cd $(dirname $(dirname $(dirname $dir)))
 
 eval $(minikube docker-env --unset)
-ls -d images/* | while read path; do
-  if [ -f $path/Dockerfile.$tag-dist ]; then
-    file=${path##*/}
-    docker build -t $namespace/$file:$tag-dist -f $path/Dockerfile.$tag-dist $path/
-    docker run -v $(pwd)/$path:/home/nodejs/app -e "NODE_ENV=production" -t $namespace/$file:$tag-dist
-  fi
-done
+path=$(pwd)
+if [ -f $path/Dockerfile.$tag-dist ]; then
+  file=${path##*/}
+  docker build -t $namespace/$file:$tag-dist -f $path/Dockerfile.$tag-dist $path/
+  docker run -v $(pwd)/$path:/home/nodejs/app -e "NODE_ENV=production" -t $namespace/$file:$tag-dist
+fi
 
 eval $(minikube docker-env)
-ls -d images/* | while read path; do
-  if [ -f $path/Dockerfile.$tag ]; then
-    file=${path##*/}
-    docker build -t $namespace/$file:$tag -f $path/Dockerfile.$tag $path/
-  fi
-done
+path=$(pwd)
+if [ -f $path/Dockerfile.$tag ]; then
+  file=${path##*/}
+  docker build -t $namespace/$file:$tag -f $path/Dockerfile.$tag $path/
+fi
