@@ -5,11 +5,6 @@ namespace=decider
 
 dir=`dirname $(greadlink -f ${BASH_SOURCE[0]} || readlink -f ${BASH_SOURCE[0]})`; cd $(dirname $(dirname $(dirname $dir)))
 
-# ls -d images/* | while read path; do
-#   file=${path##*/}
-#   docker rmi $(docker images -q $namespace/$file:$tag) -f || true
-# done
-
 # docker rmi $(docker images --quiet --filter "dangling=true") || true
 docker stop $(docker ps -a -q) || true
 docker rm $(docker ps -a -q) -f || true

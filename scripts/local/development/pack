@@ -7,9 +7,9 @@ dir=`dirname $(greadlink -f ${BASH_SOURCE[0]} || readlink -f ${BASH_SOURCE[0]})`
 
 docker-compose -f $dir/cluster/docker-compose.yml build
 
-ls -d images/* | while read path; do
-  if [ -f $path/package.json ] && [ -f $path/Dockerfile.$tag ]; then
-    file=${path##*/}
-    docker run -v $(pwd)/$path:/home/nodejs/app -t $namespace/$file:$tag npm install
-  fi
-done
+path=$(pwd)
+if [ -f $path/package.json ] && [ -f $path/Dockerfile.$tag ]; then
+  file=${path##*/}
+  docker run -v $(pwd):/home/nodejs/app -t $namespace/$file:$tag npm install
+  docker run -v $(pwd):/home/nodejs/app -t $namespace/$file:$tag node_modules/.bin/lerna bootstrap --hoist
+fi
