@@ -13,7 +13,7 @@
           "paths": [
             {
               "backend": {
-                "serviceName": "api",
+                "serviceName": "decider",
                 "servicePort": 3000
               }
             }
@@ -26,7 +26,7 @@
           "paths": [
             {
               "backend": {
-                "serviceName": "web",
+                "serviceName": "decider",
                 "servicePort": 3000
               }
             }
@@ -39,7 +39,7 @@
           "paths": [
             {
               "backend": {
-                "serviceName": "servicebus",
+                "serviceName": "decider",
                 "servicePort": 3000
               }
             }
