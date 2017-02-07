@@ -1,3 +1,11 @@
+Run
+===========================================================
+scripts/{local|remote}/{env}/start
+scripts/{local|remote}/{env}/pack
+scripts/{local|remote}/{env}/up
+scripts/{local|remote}/{env}/down
+scripts/{local|remote}/{env}/stop
+
 Install
 ===========================================================
 brew install coreutils
@@ -36,17 +44,6 @@ echo "$(docker-machine ip) local-development-api.decider.com" | sudo tee -a /etc
 192.168.64.22 local-production-rabbtmq.decider.com
 192.168.64.22 local-production-mongodb.decider.com
 192.168.64.22 local-production-eventstore.decider.com
-
-Run
-===========================================================
-eval $(minikube docker-env)
-eval $(docker-machine env)
-
-scripts/{local|remote}/{env}/start
-scripts/{local|remote}/{env}/pack
-scripts/{local|remote}/{env}/up
-scripts/{local|remote}/{env}/down
-scripts/{local|remote}/{env}/stop
 
 By hand - Development
 ===========================================================
