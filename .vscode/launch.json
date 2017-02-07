@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Docker Debug (Web)",
+      "name": "Docker Debug (decider)",
       "type": "node",
       "request": "attach",
       "port": 5858,
@@ -10,31 +10,7 @@
       "restart": false,
       "sourceMaps": false,
       "outDir": null,
-      "localRoot": "${workspaceRoot}/images/web/",
-      "remoteRoot": "home/nodejs/app/"
-    },
-    {
-      "name": "Docker Debug (API)",
-      "type": "node",
-      "request": "attach",
-      "port": 5859,
-      "address": "127.0.0.1",
-      "restart": false,
-      "sourceMaps": false,
-      "outDir": null,
-      "localRoot": "${workspaceRoot}/images/api/",
-      "remoteRoot": "home/nodejs/app/"
-    },
-    {
-      "name": "Docker Debug (ServiceBus)",
-      "type": "node",
-      "request": "attach",
-      "port": 5860,
-      "address": "127.0.0.1",
-      "restart": false,
-      "sourceMaps": false,
-      "outDir": null,
-      "localRoot": "${workspaceRoot}/images/servicebus/",
+      "localRoot": "${workspaceRoot}/",
       "remoteRoot": "home/nodejs/app/"
     }
   ]
