@@ -5,14 +5,13 @@ namespace=decider
 
 dir=`dirname $(greadlink -f ${BASH_SOURCE[0]} || readlink -f ${BASH_SOURCE[0]})`; cd $(dirname $(dirname $(dirname $dir)))
 
-eval $(minikube docker-env --unset)
+eval $(minikube docker-env)
 path=$(pwd)
 if [ -f $path/Dockerfile.$tag-dist ]; then
   file=${path##*/}
   docker rmi $(docker images -q $namespace/$file:$tag-dist) -f || true
 fi
 
-eval $(minikube docker-env)
 path=$(pwd)
 if [ -f $path/Dockerfile.$tag ]; then
   file=${path##*/}

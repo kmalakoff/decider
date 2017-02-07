@@ -20,7 +20,7 @@
       "spec": {
         "containers": [
           {
-            "image": "decider/mongodb:pack",
+            "image": "mvertes/alpine-mongo:latest",
             "name": "mongodb",
             "ports": [
               {

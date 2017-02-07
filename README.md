@@ -24,25 +24,12 @@ scripts/local/production/stop
 To route properly in development, you need to DNS
 ===========================================================
 
-- Update /etc/hosts:
-
-echo "$(docker-machine ip) local-development-web.decider.com" | sudo tee -a /etc/hosts
-echo "$(docker-machine ip) local-development-api.decider.com" | sudo tee -a /etc/hosts
-echo "$(docker-machine ip) local-development-servicebus.decider.com" | sudo tee -a /etc/hosts
-
-- Example - Local Development:
-
-127.0.0.1 local-development-web.decider.com
-127.0.0.1 local-development-api.decider.com
-127.0.0.1 local-development-servicebus.decider.com
-
+- Example - Local Production:
 - Update /etc/hosts
 
 echo "$(minikube ip) local-production-web.decider.com" | sudo tee -a /etc/hosts
 echo "$(minikube ip) local-production-api.decider.com" | sudo tee -a /etc/hosts
 echo "$(minikube ip) local-production-servicebus.decider.com" | sudo tee -a /etc/hosts
-
-- Example - Local Production:
 
 192.168.64.22 local-production-web.decider.com
 192.168.64.22 local-production-api.decider.com

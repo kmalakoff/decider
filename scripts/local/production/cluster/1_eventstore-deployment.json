@@ -20,7 +20,7 @@
       "spec": {
         "containers": [
           {
-            "image": "decider/eventstore:pack",
+            "image": "eventstore/eventstore:latest",
             "name": "eventstore",
             "ports": [
               {

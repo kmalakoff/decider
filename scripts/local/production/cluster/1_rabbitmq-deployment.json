@@ -20,7 +20,7 @@
       "spec": {
         "containers": [
           {
-            "image": "decider/rabbitmq:pack",
+            "image": "rabbitmq:latest",
             "name": "rabbitmq",
             "ports": [
               {
