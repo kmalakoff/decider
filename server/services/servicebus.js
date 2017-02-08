@@ -10,6 +10,7 @@ async function createServiceBus() {
       resolve(servicebus);
     });
     servicebus.on('error', (err) => { reject(err); });
+    servicebus.on('connection.error', (err) => { reject(err); });
   });
 }
 
