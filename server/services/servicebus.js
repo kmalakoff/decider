@@ -13,7 +13,7 @@ async function createServiceBus() {
   });
 }
 
-module.exports = async function() {
+module.exports = async () => {
   return new Promise(async (resolve, reject) => {
     while (true) {
       try {
