@@ -17,7 +17,7 @@ COPY ./server /home/nodejs/app/server
 COPY lerna.json /home/nodejs/app/lerna.json
 COPY ./packages /home/nodejs/app/packages
 USER root
-RUN node_modules/.bin/lerna bootstrap --hoist --ignore web
+RUN node_modules/.bin/lerna bootstrap --hoist --ignore api-web-application
 USER nodejs
 
 EXPOSE 3000
