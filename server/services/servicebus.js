@@ -1,5 +1,5 @@
 const sleep = require('sleep-promise');
-const RETRY_SLEEP = 1000;
+const RETRY_SLEEP = 5000;
 
 async function createServiceBus() {
   return new Promise((resolve, reject) => {
