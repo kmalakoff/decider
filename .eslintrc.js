@@ -30,5 +30,8 @@ module.exports = {
 
     // http://eslint.org/docs/rules/func-names
     'func-names': 'off',
+
+    // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/first.md
+    'import/first': 'off',
   }
 };

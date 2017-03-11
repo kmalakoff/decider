@@ -8,7 +8,9 @@ module.exports = class Proposal {
     this.name = '';
   }
 
-  streamName(id) { return `${this.constructor.name}-${id || this.id}`; }
+  streamName(id) {
+    return `${this.constructor.name}-${id || this.id}`;
+  }
 
   hydrate(e) {
     switch (e.type) {

@@ -3,7 +3,7 @@ const path = require('path');
 const APP_PATH = path.resolve(__dirname, 'client');
 
 module.exports = {
-  entry: path.join(APP_PATH, `index.${process.env.NODE_ENV}.js`),
+  entry: path.join(APP_PATH, `index.${process.env.NODE_ENV}.jsx`),
   output: {
     path: path.join(__dirname, 'public', 'client'),
     filename: 'bundle.js'

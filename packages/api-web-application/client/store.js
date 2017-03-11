@@ -8,14 +8,14 @@ export default class Store {
   constructor() {
     this.fetch();
 
-    this.primus = new Primus(process.env.SERVICEBUS_SERVICE_URL);
+    this.primus = new window.Primus(process.env.SERVICEBUS_SERVICE_URL);
     this.primus.on('error', (err) => { console.log('primus error', err); });
     this.primus.on('open', () => {
       this.primus.write({ action: 'subscribe', channel: 'proposals' });
       this.primus.write({ action: 'subscribe', channel: 'users' });
       this.primus.write({ action: 'subscribe', channel: 'votes' });
     });
-    this.primus.on('data', (data) => { this.fetch(); });
+    this.primus.on('data', (data) => { console.log(data); this.fetch(); });
   }
 
   async fetch() {
