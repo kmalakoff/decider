@@ -9,6 +9,6 @@
   "dependencies": {
     "engine.io": "^2.0.0",
     "primus": "^6.0.8",
-    "uws": "^0.12.0"
+    "uws": "^0.13.0"
   }
 }

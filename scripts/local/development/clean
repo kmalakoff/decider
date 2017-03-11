@@ -5,6 +5,8 @@ namespace=decider
 
 dir=`dirname $(greadlink -f ${BASH_SOURCE[0]} || readlink -f ${BASH_SOURCE[0]})`; cd $(dirname $(dirname $(dirname $dir)))
 
+find . -name "node_modules" -exec rm -rf '{}' +
+
 # docker rmi $(docker images --quiet --filter "dangling=true") || true
 docker stop $(docker ps -a -q) || true
 docker rm $(docker ps -a -q) -f || true

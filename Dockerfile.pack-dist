@@ -1,4 +1,4 @@
-FROM node:7.5.0-alpine
+FROM node:alpine
 
 # git for lerna
 # libc6-compat for uws
