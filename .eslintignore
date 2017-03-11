@@ -3,4 +3,5 @@
 docs
 node_modules
 packages/*/node_modules
+packages/api-web-application/public
 scripts

@@ -7,25 +7,23 @@ class EventStoreEventEmitter extends EventEmitter {
     this.es = es;
 
     this.es.subscribeToAllFrom(null, true,
-      (s, es_event) => {
+      (s, esEvent) => {
         try {
-          const e = JSON.parse(es_event.originalEvent.data.toString());
+          const e = JSON.parse(esEvent.originalEvent.data.toString());
           if (e.type) this.emit('event', e);
-        } catch (err) {}
+        } catch (err) { console.error(err); }
       },
-      function () { logger.info('Live processing started.'); },
-      function (c, r, e) { logger.info('Subscription dropped.', c, r, e); },
+      () => { console.info('Live processing started.'); },
+      (c, r, e) => { console.info('Subscription dropped.', c, r, e); },
       new (require('eventstore-node').UserCredentials)('admin', 'changeit')
     );
   }
 }
 
-let emitters = []
+const emitters = [];
 
-module.exports = function(es) {
-  return findOrCreate(
+module.exports = es => findOrCreate(
     emitters,
-    x => { return x.es === es },
+    x => x.es === es,
     () => new EventStoreEventEmitter(es)
   );
-}

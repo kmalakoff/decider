@@ -8,20 +8,21 @@ module.exports = class Vote {
     this.name = '';
   }
 
-  streamName(id) { return this.constructor.name + '-' + (id || this.id); }
+  streamName(id) { return `${this.constructor.name}-${id || this.id}`; }
 
   hydrate(e) {
-    switch(e.type) {
+    switch (e.type) {
       case 'vote_created': { _.extend(this, _.pick(e, 'id', 'name', 'proposal_id')); break; }
+      default: { break; }
     }
   }
 
   execute(command) {
     if (command instanceof CreateVote) {
-      let events = [_.defaults({type: 'vote_created', id: uuid.v4()}, _.pick(command, 'id', 'name', 'proposal_id'))];
+      const events = [_.defaults({ type: 'vote_created', id: uuid.v4() }, _.pick(command, 'id', 'name', 'proposal_id'))];
       this.hydrate(events[0]); // TODO: is this correct?
       return events;
     }
     throw new Error('Unrecognized command');
   }
-}
+};

@@ -1,6 +1,6 @@
-module.exports = function(array, predicate, create) {
-  let index = array.findIndex(predicate);
+module.exports = (array, predicate, create) => {
+  const index = array.findIndex(predicate);
   if (~index) return array[index];
-  let item = create(); array.push(item);
+  const item = create(); array.push(item);
   return item;
-}
+};

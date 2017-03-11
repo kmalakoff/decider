@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 const _ = require('lodash');
 
-module.exports = function({app}) {
+module.exports = function ({ app }) {
   if (process.env.NODE_ENV !== 'production') {
     const webpack = require('webpack');
     const webpackMiddleware = require('webpack-dev-middleware');
@@ -29,14 +29,13 @@ module.exports = function({app}) {
       noInfo: true,
       quiet: false,
       lazy: false,
-      stats: {colors: true}
+      stats: { colors: true }
     });
 
     // serve the content using webpack
     app.use(middleware);
     app.use(webpackHotMiddleware(compiler));
-  }
-  else {
+  } else {
     app.use('/', express.static(path.join(__dirname, '..', '..', 'public')));
   }
-}
+};

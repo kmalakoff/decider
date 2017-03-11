@@ -1,12 +1,12 @@
 import 'babel-polyfill'; // async / await
 
 // hoist environment variables
-for (var key in window.__ENV__) { process.env[key] = window.__ENV__[key]; }
+for (const key in window.__ENV__) { process.env[key] = window.__ENV__[key]; }
 
 import 'semantic-ui-css/semantic.css';
 import React from 'react';
-import {render} from 'react-dom';
-import {AppContainer} from 'react-hot-loader';
+import { render } from 'react-dom';
+import { AppContainer } from 'react-hot-loader';
 
 import Provider from './provider';
 import Routes from './routes';
@@ -17,7 +17,7 @@ const store = new Store();
 render(
   <AppContainer>
     <Provider store={store}>
-      <Routes/>
+      <Routes />
     </Provider>
   </AppContainer>,
   document.getElementById('root')
@@ -30,7 +30,7 @@ if (module.hot) {
     render(
       <AppContainer>
         <Provider store={store}>
-          <NextRoutes/>
+          <NextRoutes />
         </Provider>
       </AppContainer>,
       document.getElementById('root')

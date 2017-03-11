@@ -23,6 +23,12 @@ module.exports = {
     'no-bitwise': 'off',
 
     // http://eslint.org/docs/rules/comma-dangle
-    'comma-dangle': 'off'
+    'comma-dangle': 'off',
+
+    // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-unresolved.md
+    'import/no-unresolved': [0, { commonjs: true }],
+
+    // http://eslint.org/docs/rules/func-names
+    'func-names': 'off',
   }
 };

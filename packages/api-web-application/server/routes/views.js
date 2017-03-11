@@ -13,6 +13,6 @@ const CLIENT_HTML = `<html>
   </body>
 </html>`;
 
-module.exports = function({app}) {
+module.exports = function ({ app }) {
   app.get('*', (req, res) => { res.type('text/html; charset=UTF-8'); res.send(CLIENT_HTML); });
-}
+};
