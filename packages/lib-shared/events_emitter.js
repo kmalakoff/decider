@@ -11,7 +11,7 @@ class EventStoreEventEmitter extends EventEmitter {
         try {
           const e = JSON.parse(esEvent.originalEvent.data.toString());
           if (e.type) this.emit('event', e);
-        } catch (err) { console.error(err); }
+        } catch (err) { /* skip non-jSON events */ }
       },
       () => { console.info('Live processing started.'); },
       (c, r, e) => { console.info('Subscription dropped.', c, r, e); },

@@ -15,6 +15,9 @@ module.exports = {
     // http://eslint.org/docs/rules/no-console
     'no-console': 'off',
 
+    // http://eslint.org/docs/rules/no-debugger
+    'no-debugger': 'warn',
+
     // http://eslint.org/docs/rules/global-require
     'global-require': 'off',
     'import/no-dynamic-require': 'off',

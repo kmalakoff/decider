@@ -10,6 +10,7 @@ module.exports = ({ services }) => {
           let res = await services.mongo
             .collection('votes')
             .updateMany(_.pick(e, 'id', 'name', 'proposal_id'), { $inc: { completed_count: 1 } });
+
           if (res.result.nModified < 1) {
             res = await services.mongo
               .collection('votes')

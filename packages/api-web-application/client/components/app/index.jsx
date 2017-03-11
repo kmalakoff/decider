@@ -9,16 +9,11 @@ import Proposals from '../proposals';
 import Votes from '../votes';
 import Users from '../users';
 
+const NoMatch = () => <div><h1>No Match</h1></div>;
+
 @observer
 export default class App extends Component {
-  static contextTypes = { store: React.PropTypes.object.isRequired }
-
-  state = {}
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
-
   render() {
-    const { store } = this.context;
-
     return (
       <div>
         <Menu>
@@ -28,10 +23,11 @@ export default class App extends Component {
           <NavLink className="item" to="/users" activeClassName="active">Users</NavLink>
         </Menu>
         <Switch>
-          <Route path="/" exactly component={Dashboard} />
+          <Route path="/" exact component={Dashboard} />
           <Route path="/proposals" component={Proposals} />
           <Route path="/votes" component={Votes} />
           <Route path="/users" component={Users} />
+          <Route component={NoMatch} />
         </Switch>
       </div>
     );

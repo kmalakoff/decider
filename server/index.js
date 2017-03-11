@@ -14,7 +14,7 @@ async function initialize() {
   // initialize services
   const services = requireDirectory(module, './services');
   const options = { app, server, services };
-  Object.entries(services).forEach(async ([key, value]) => { services[key] = await value(options); });
+  await Promise.all(Object.entries(services).map(async ([key, value]) => { services[key] = await value(options); }));
 
   // initialize modules
   const MODULES = JSON.parse(process.env.MODULES);
