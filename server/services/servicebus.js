@@ -1,31 +1,32 @@
-const sleep = require('sleep-promise');
 const RETRY_SLEEP = 5000;
 
 async function createServiceBus() {
   return new Promise((resolve, reject) => {
     console.log('Creating', process.env.RABBITMQ_SERVICE_URL);
-    servicebus = require('servicebus').bus({url: process.env.RABBITMQ_SERVICE_URL});
-    servicebus.on('ready', (err) => {
+    const servicebus = require('servicebus').bus({ url: process.env.RABBITMQ_SERVICE_URL });
+    servicebus.on('ready', () => {
       console.log('Service bus ready:', process.env.RABBITMQ_SERVICE_URL);
       resolve(servicebus);
     });
-    servicebus.on('error', (err) => { reject(err); });
-    servicebus.on('connection.error', (err) => { reject(err); });
+    servicebus.on('error', reject);
+    servicebus.on('connection.error', reject);
   });
 }
 
-module.exports = async () => {
-  return new Promise(async (resolve, reject) => {
-    while (true) {
-      try {
-        let servicebus = await createServiceBus();
-        if (servicebus) return resolve(servicebus);
+module.exports = async () => new Promise(async (resolve, reject) => {
+  let interval = setInterval(async () => {
+    try {
+      const servicebus = await createServiceBus();
+      if (servicebus) {
+        clearInterval(interval); interval = null;
+        return resolve(servicebus);
       }
-      catch (err) {
-        if (err.code != 'ECONNREFUSED') return reject(err);
-        console.log('Service bus not ready. Retrying connection', err.code, process.env.RABBITMQ_SERVICE_URL);
-        sleep(RETRY_SLEEP);
+    } catch (err) {
+      if (err.code !== 'ECONNREFUSED') {
+        clearInterval(interval); interval = null;
+        return reject(err);
       }
+      console.log('Service bus not ready. Retrying connection', err.code, process.env.RABBITMQ_SERVICE_URL);
     }
-  });
-}
+  }, RETRY_SLEEP);
+});

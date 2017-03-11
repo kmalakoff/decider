@@ -3,7 +3,7 @@ const urlParse = require('url').parse;
 const eventstore = require('eventstore-node');
 
 module.exports = async () => {
-  let endpoint = _.pick(urlParse(process.env.EVENTSTORE_SERVICE_URL), ['hostname', 'port'])
+  const endpoint = _.pick(urlParse(process.env.EVENTSTORE_SERVICE_URL), ['hostname', 'port']);
   endpoint.host = endpoint.hostname; delete endpoint.hostname;
   const connection = eventstore.createConnection({}, endpoint);
 
@@ -14,5 +14,6 @@ module.exports = async () => {
       console.log('Connected to eventstore at', url);
       resolve(connection);
     });
+    connection.once('error', reject);
   });
-}
+};
