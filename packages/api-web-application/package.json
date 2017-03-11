@@ -37,5 +37,5 @@
     "webpack": "^2.2.1",
     "webpack-dev-middleware": "^1.10.1",
     "webpack-hot-middleware": "^2.15.0"
-  },
+  }
 }

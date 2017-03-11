@@ -7,7 +7,9 @@
     "develop": "nodemon --harmony-async-await --debug=0.0.0.0:5858 --watch server --watch packages --ignore packages/api-web-application/client server/index.js",
     "start": "node --harmony-async-await server/index.js",
     "dist": "cd packages/api-web-application && npm run dist",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
+    "lint-fix": "eslint . --fix"
   },
   "license": "MIT",
   "devDependencies": {
