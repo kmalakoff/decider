@@ -5,8 +5,6 @@ namespace=decider
 
 dir=`dirname $(greadlink -f ${BASH_SOURCE[0]} || readlink -f ${BASH_SOURCE[0]})`; cd $(dirname $(dirname $(dirname $dir)))
 
-find . -name "node_modules" -exec rm -rf '{}' +
-
 eval $(minikube docker-env)
 path=$(pwd)
 if [ -f $path/Dockerfile.$tag-dist ]; then
