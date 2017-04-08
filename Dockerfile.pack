@@ -7,15 +7,15 @@ RUN apk add --update git libc6-compat && rm -rf /var/cache/apk/*
 RUN addgroup nodejs && adduser -s /bin/bash -D -G nodejs nodejs
 USER nodejs
 
-RUN mkdir -p /home/nodejs/app
-WORKDIR /home/nodejs/app
+RUN mkdir -p /home/node/app
+WORKDIR /home/node/app
 
-COPY package.json /home/nodejs/app/package.json
+COPY package.json /home/node/app/package.json
 RUN npm install --dev --production
-COPY ./server /home/nodejs/app/server
+COPY ./server /home/node/app/server
 
-COPY lerna.json /home/nodejs/app/lerna.json
-COPY ./packages /home/nodejs/app/packages
+COPY lerna.json /home/node/app/lerna.json
+COPY ./packages /home/node/app/packages
 USER root
 RUN node_modules/.bin/lerna bootstrap --hoist --ignore api-web-application
 USER nodejs

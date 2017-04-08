@@ -11,7 +11,7 @@ if [ -f $path/Dockerfile.$tag-dist ]; then
   file=${path##*/}
   file="$(echo $file | tr [:upper:] [:lower:])"
   docker build -t $namespace/$file:$tag-dist -f $path/Dockerfile.$tag-dist $path/
-  docker run -v $(pwd):/home/nodejs/app -e "NODE_ENV=production" -t $namespace/$file:$tag-dist
+  docker run -v $path:/home/node/app -e "NODE_ENV=production" -t $namespace/$file:$tag-dist
 fi
 
 path=$(pwd)

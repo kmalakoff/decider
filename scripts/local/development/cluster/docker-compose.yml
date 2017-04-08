@@ -9,7 +9,7 @@ services:
       - "3000:3000"
       - "5858:5858"
     volumes:
-        - ../../../..:/home/nodejs/app
+        - ../../../..:/home/node/app
     depends_on:
       - "eventstore"
       - "mongodb"

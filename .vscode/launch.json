@@ -11,7 +11,7 @@
       "sourceMaps": false,
       "outDir": null,
       "localRoot": "${workspaceRoot}/",
-      "remoteRoot": "home/nodejs/app/"
+      "remoteRoot": "home/node/app/"
     }
   ]
 }
