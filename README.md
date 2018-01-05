@@ -1,5 +1,7 @@
 Run
 ===========================================================
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/kmalakoff/decider.svg)](https://greenkeeper.io/)
 scripts/{local|remote}/{env}/start
 scripts/{local|remote}/{env}/pack
 scripts/{local|remote}/{env}/up
